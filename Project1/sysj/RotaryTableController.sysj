@@ -5,8 +5,10 @@ RotaryTableController(
 ->{
 	loop {
 		pause;
-		await(!capOnBottleAtPos1);
-		abort()
+		await(!capOnBottleAtPos1 && !bottleAtPos5);
+		abort(tableAlignedWithSensor){
+			sustain rotaryTableTrigger;
+		}
 
 	}
 }
