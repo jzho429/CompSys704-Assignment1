@@ -1,0 +1,13 @@
+ConveyorController(
+		input signal bottleAtPos1, bottleLeftPos5, bottleAtPos5;
+		output signal motconveyorOnOff;
+		)
+->{
+	loop {
+		pause;
+		await(!bottleLeftPos5);
+		abort(bottleAtPos1 && !bottleLeftPos5){
+			sustain motconveyorOnOff;
+		}
+	}
+}
