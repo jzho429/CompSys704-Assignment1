@@ -1,0 +1,67 @@
+ConveyorPlant(
+		input signal motConveyorOnOff, bottleAtPos5, bottleAtPos0; 											//Input
+		output signal bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, bottleLeftPos5; //Output to Controller
+		output signal bottleAtPos1E, bottleLeftPos5E;														//Output to GUI
+		)
+->{
+	/*
+	* Bottle positions
+	* 0 - at Pos0 - Loading
+	* 1 = at Pos1
+	* 2 = at Pos2
+	* 3 = at Pos3
+	* 4 = at Pos4
+	* 5 = at Pos5
+	*/
+	signal motorOn;
+	signal botPos1, botPos2, botPos3, botPos4, botPos5;
+	{
+		loop { //Handles ConveyorController Signals
+			abort(immediate (motConveyorOnOff)){
+				System.out.println("ConveyorPlant: Conveyor Off");
+				while(true){pause;}
+			}
+			abort(immediate (!motConveyorOnOff)){
+				System.out.println("ConveyorPlant: Conveyor On");
+				sustain motorOn;
+			}
+			pause;
+		}
+	}
+	|| 
+	/*
+	 * check pos0, move to pos 1 if nothing there
+	 * ||check pos1, move to pos 2 if rotary table ticks
+	 * ||check pos3, move to pos 4 if rotary table ticks
+	 * ||check pos4, move to pos 5 if rotary table ticks
+	 * check pos5, move to bottleLeftPos5
+	 */
+	{
+		{
+			while(true){
+				await(bottleAtPos0 && motorOn);
+				abort(rotaryTableTrigger){
+					sustain botAtPos1;
+				}
+			}
+		}
+		||
+		{
+			while(true){
+				await(bottleAtPos1);
+				await(rotaryTableTrigger)
+				present
+			}
+
+		}
+	}
+	||
+	{
+		loop { //To VIZ
+			{while(true){present(bottleAtPos1){emit bottleAtPos1E;} pause;}}
+			||
+			{while(true){present(bottleLeftPos5){emit bottleLeftPos5E;} pause;}}
+			pause;
+		}
+	}
+}
