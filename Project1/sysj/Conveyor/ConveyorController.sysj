@@ -5,9 +5,13 @@ ConveyorController(
 ->{
 	loop {
 		pause;
+		System.out.println("1");
 		await(!bottleLeftPos5);
-		abort(bottleAtPos1 && !bottleLeftPos5){
+		System.out.println("2");
+		abort(immediate (bottleAtPos1 && !bottleLeftPos5 && !bottleAtPos5)){
+			System.out.println("3");
 			sustain motconveyorOnOff;
 		}
+		System.out.println("4");
 	}
 }

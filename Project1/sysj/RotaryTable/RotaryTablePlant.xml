@@ -1,0 +1,20 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SSRotaryTablePlant" Local="true">
+		<ClockDomain Name="RotaryTablePlantCD" Class="RotaryTablePlant">
+
+
+		input signal tableAlignedWithSensor, bottleAtPos5, capOnBottleAtPos1;
+		output signal rotaryTableTrigger;
+			<!-- <iSignal Name="motConveyorOnOff"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
+			<iSignal Name="bottleAtPos5"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31001" /> -->
+			
+
+			<oSignal Name="bottleAtPos1"    To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
+			<oSignal Name="bottleLeftPos5"  To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
+			<oSignal Name="bottleAtPos5"    To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
+
+			<!-- <oSignal Name="bottleAtPos1E" 	To="UI." Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="bottleLeftPos5E" To="UI." Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" /> -->
+		</ClockDomain>
+	</SubSystem>
+</System>

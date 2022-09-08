@@ -1,0 +1,61 @@
+RotaryTablePlant(
+		input signal tableAlignedWithSensor, bottleAtPos5, capOnBottleAtPos1;
+		output signal rotaryTableTrigger;
+		)
+->{
+	signal RTPutBottleAt2, RTPutBottleAt3, RTPutBottleAt4, RTPutBottleAt5;
+	int numTurns = 0;
+	while(true) {
+		pause;
+		emit tableAlignedWithSensor;
+		present(rotaryTableTrigger && enable){
+			await(!enable);
+			numTurns++;
+			if(numTurns == 2) {
+				emit RTPutBottleAt2;
+				abort(rotaryTableTrigger){
+					sustain tableAlignedWithSensor;
+				}
+			}else if(numTurns == 3) {
+				emit RTPutBottleAt3;
+				abort(rotaryTableTrigger){
+					sustain tableAlignedWithSensor;
+				}
+				
+			}else if(numTurns == 4 ) {
+				emit RTPutBottleAt4;
+				abort(rotaryTableTrigger){
+					sustain tableAlignedWithSensor;
+				}
+			}else if(numTurns == 5) {
+				numTurns = 0;
+				emit RTPutBottleAt5;
+				await(!rotaryTableTrigger);
+			}
+		}
+	}
+	||
+	{//capOnBottleAtPos1
+		while(true){
+			await(capAtPos1);
+			abort (immediate (!capAtPos1 && enable)){
+				sustain capOnBottleAtPos1;
+			}
+		}
+	}
+	||//To VIZ
+	{
+		loop {
+			{while(true){present(){emit }}}//pos1
+			||
+			{while(true){present(){emit }}}//pos2
+			||
+			{while(true){present(){emit }}}//pos3
+			||
+			{while(true){present(){emit }}}//pos4
+			||
+			{while(true){present(){emit }}}//pos5
+		}
+	}
+	
+}

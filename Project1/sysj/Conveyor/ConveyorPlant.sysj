@@ -1,7 +1,7 @@
 ConveyorPlant(
-		input signal motConveyorOnOff, bottleAtPos5, bottleAtPos0; 											//Input
+		input signal motConveyorOnOff, rotaryTableTrigger, bottleAtPos0, RTPutBottleAt2, RTPutBottleAt3, RTPutBottleAt4, RTPutBottleAt5; 											//Input
 		output signal bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, bottleLeftPos5; //Output to Controller
-		output signal bottleAtPos1E, bottleLeftPos5E;														//Output to GUI
+		output signal bottleAtPos1E, bottleAtPos2E, bottleAtPos3E, bottleAtPos4E, bottleAtPos5E, bottleLeftPos5E;														//Output to GUI
 		)
 ->{
 	/*
@@ -14,7 +14,6 @@ ConveyorPlant(
 	* 5 = at Pos5
 	*/
 	signal motorOn;
-	signal botPos1, botPos2, botPos3, botPos4, botPos5;
 	{
 		loop { //Handles ConveyorController Signals
 			abort(immediate (motConveyorOnOff)){
@@ -41,24 +40,85 @@ ConveyorPlant(
 			while(true){
 				await(bottleAtPos0 && motorOn);
 				abort(rotaryTableTrigger){
-					sustain botAtPos1;
+					System.out.println("Bottle at pos 1");
+					sustain bottleAtPos1;
 				}
+				pause;
+			}
+		}
+		||
+		{
+			while(true) {
+				present(RTPutBottleAt2){
+					abort((bottleAtPos3)){
+						System.out.println("Bottle at pos 2");
+						sustain bottleAtPos2;
+					}
+				}
+				pause;
+			}
+		}
+		||
+		{
+			while(true) {
+				present(RTPutBottleAt3){
+					abort((bottleAtPos4)){
+						System.out.println("Bottle at pos 3");
+						sustain bottleAtPos3;
+					}
+				}
+				pause;
+			}
+		}
+		||
+		{
+			while(true) {
+				present(RTPutBottleAt4){
+					abort((bottleAtPos5)){
+						System.out.println("Bottle at pos 4");
+						sustain bottleAtPos4;
+					}
+				}
+				pause;
 			}
 		}
 		||
 		{
 			while(true){
-				await(bottleAtPos1);
-				await(rotaryTableTrigger)
-				present
+				present(RTPutBottleAt5){
+					abort(bottleLeftPos5){
+						System.out.println("Bottle at pos 5");
+						sustain bottleAtPos5;
+					}
+				}
+				pause;
 			}
-
 		}
+		||
+		{
+			while(true) {
+				present(bottleAtPos5 && motorOn)
+				{
+					System.out.println("Bottle left pos 5");
+					emit bottleLeftPos5;
+				}
+				pause;
+			}
+		}
+
 	}
 	||
 	{
 		loop { //To VIZ
 			{while(true){present(bottleAtPos1){emit bottleAtPos1E;} pause;}}
+			||
+			{while(true){present(bottleAtPos2){emit bottleAtPos2E;} pause;}}
+			||
+			{while(true){present(bottleAtPos3){emit bottleAtPos3E;} pause;}}
+			||
+			{while(true){present(bottleAtPos4){emit bottleAtPos4E;} pause;}}
+			||
+			{while(true){present(bottleAtPos5){emit bottleAtPos5E;} pause;}}
 			||
 			{while(true){present(bottleLeftPos5){emit bottleLeftPos5E;} pause;}}
 			pause;

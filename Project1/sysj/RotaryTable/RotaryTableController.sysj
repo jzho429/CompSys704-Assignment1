@@ -1,0 +1,30 @@
+RotaryTableController(
+		input signal tableAlignedWithSensor, bottleAtPos5, capOnBottleAtPos1;
+		output signal rotaryTableTrigger;
+		)
+->{
+	loop{
+		pause;
+		await(bottleAtPos1 && !capOnBottleAtPos1);
+		abort(bottleAtPos2_RT){
+			sustain rotaryTableTrigger;
+		}
+		await(doneAtPos2);
+		abort(bottleAtPos3_RT){
+			sustain rotaryTableTrigger;
+		}
+		await(doneAtPos3);
+		abort(bottleAtPos4_RT){
+			sustain rotaryTableTrigger;
+		}
+		await(doneAtPos4);
+		abort(bottleAtPos5){
+			sustain rotaryTableTrigger;
+		}
+		
+		
+//				abort(tableAlignedWithSensor){
+//					sustain rotaryTableTrigger;
+//				}
+	}
+}

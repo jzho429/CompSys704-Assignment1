@@ -1,17 +1,29 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="SSConveyorPlant" Local="true">
 		<ClockDomain Name="ConveyorPlantCD" Class="ConveyorPlant">
-
-			<!-- <iSignal Name="motConveyorOnOff"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
-			<iSignal Name="bottleAtPos5"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31001" /> -->
+ 
+			<iSignal Name="motConveyorOnOff"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
+			<!-- <iSignal Name="rotaryTableTrigger"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
+			<iSignal Name="bottleAtPos0"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
+			<iSignal Name="RTPutBottleAt2"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
+			<iSignal Name="RTPutBottleAt3"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
+			<iSignal Name="RTPutBottleAt4"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
+			<iSignal Name="RTPutBottleAt5"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" /> -->
 			
 
-			<oSignal Name="bottleAtPos1"    To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
-			<oSignal Name="bottleLeftPos5"  To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
-			<oSignal Name="bottleAtPos5"    To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
+			<oSignal Name="bottleAtPos1"    To="ConveyorControllerCD.bottleAtPos1" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
+			<oSignal Name="bottleAtPos2"    To="FillerControllerCD" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32000" />
+			<oSignal Name="bottleAtPos3"    To="LidLoaderControllerCD" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="bottleAtPos4"    To="CapperControllerCD" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+			<oSignal Name="bottleAtPos5"	To="ConveyorControllerCD.bottleAtPos5" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
+			<oSignal Name="bottleLeftPos5"  To="ConveyorControllerCD.bottleLeftPos5" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
 
-			<!-- <oSignal Name="bottleAtPos1E" 	To="UI." Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
-			<oSignal Name="bottleLeftPos5E" To="UI." Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" /> -->
+			<oSignal Name="bottleAtPos1E"   To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="bottleAtPos2E"   To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="bottleAtPos3E"   To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="bottleAtPos4E"   To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="bottleAtPos5E"   To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="bottleLeftPos5E" To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
 		</ClockDomain>
 	</SubSystem>
 </System>

@@ -8,7 +8,8 @@ public class Ports {
 	public static final int PORT_LOADER_CONTROLLER = 10000;
 	public static final int PORT_LOADER_VIZ = 20000;
 
-	/* 30000 Series for New Ports
+	/*
+	 * 30000 Series for New Ports
 	 * 3***1 = Controller
 	 * 3***2 = Plant
 	 * 
@@ -24,13 +25,14 @@ public class Ports {
 	 * public static final int PORT_CAPPER_CONTROLLER = 33000;
 	 * public static final int PORT_CAPPER_PLANT = 33001;
 	 * 
+	 * public static final int PORT_VIZ = 40000;
 	 */
-	
-	// Manual 
-	public static final String SIGNAL_PUSHER_EXTEND   = "ControllerCD.pusherExtendM";
-//	public static final String SIGNAL_VACOFF          = "ControllerCD.vacOffM";
-	public static final String SIGNAL_VACON           = "ControllerCD.vacOnM";
-	public static final String SIGNAL_ARM_SOURCE      = "ControllerCD.armSourceM";
-	public static final String SIGNAL_ARM_DEST        = "ControllerCD.armDestM";
-	public static final String SIGNAL_Mode            = "ControllerCD.mode";
+
+	// Manual
+	public static final String SIGNAL_PUSHER_EXTEND = "ControllerCD.pusherExtendM";
+	// public static final String SIGNAL_VACOFF = "ControllerCD.vacOffM";
+	public static final String SIGNAL_VACON = "ControllerCD.vacOnM";
+	public static final String SIGNAL_ARM_SOURCE = "ControllerCD.armSourceM";
+	public static final String SIGNAL_ARM_DEST = "ControllerCD.armDestM";
+	public static final String SIGNAL_Mode = "ControllerCD.mode";
 }
