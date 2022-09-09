@@ -1,14 +1,20 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="SSRotaryTableController" Local="true">
 		<ClockDomain Name="RotaryTableControllerCD" Class="RotaryTableController">
-input signal tableAlignedWithSensor, bottleAtPos5, capOnBottleAtPos1;
-		output signal rotaryTableTrigger;
+			<iSignal Name="tableAlignedWithSensor"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="capOnBottleAtPos1"    	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="bottleAtPos1RT"    		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="bottleAtPos2RT"    		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="bottleAtPos3RT"    		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="bottleAtPos4RT"    		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="bottleAtPos5RT"    		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
 
+			<!-- <iSignal Name="doneAtPos2"    			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="doneAtPos3"    			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="doneAtPos4"    			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" /> -->
 
-
-			<iSignal Name="bottleAtPos5"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30000" />
-
-            <oSignal Name="motconveyorOnOff"    TO="ConveyorPlantCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30001" />
+            <oSignal Name="rotaryTableTrigger"		To="RotaryTablePlantCD.rotaryTableTrigger" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31001" />
+			<oSignal Name="rotaryTableTriggerCV"    To="ConveyorPlantCD.rotaryTableTrigger" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30001" />
         
 		</ClockDomain>
 	</SubSystem>

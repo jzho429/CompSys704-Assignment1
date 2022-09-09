@@ -1,30 +1,40 @@
 RotaryTableController(
-		input signal tableAlignedWithSensor, bottleAtPos5, capOnBottleAtPos1;
-		output signal rotaryTableTrigger;
+		input signal tableAlignedWithSensor, bottleAtPos1RT, bottleAtPos2RT, bottleAtPos3RT, bottleAtPos4RT, bottleAtPos5RT, capOnBottleAtPos1;
+		input signal doneAtPos2, doneAtPos3, doneAtPos4;
+		output signal rotaryTableTrigger, rotaryTableTriggerCV;
 		)
 ->{
-	loop{
-		pause;
-		await(bottleAtPos1 && !capOnBottleAtPos1);
-		abort(bottleAtPos2_RT){
-			sustain rotaryTableTrigger;
+	{
+		loop{
+			await(bottleAtPos1RT && !capOnBottleAtPos1);
+			abort(bottleAtPos2RT){
+				trap(T){
+					{sustain rotaryTableTrigger;}||{waitl(0.5 s); exit(T);}
+				}
+			}
+			//await(doneAtPos2);
+			abort(bottleAtPos3RT){
+				trap(T){
+					{sustain rotaryTableTrigger;}||{waitl(0.5 s); exit(T);}
+				}
+			}
+			//await(doneAtPos3);
+			abort(bottleAtPos4RT){
+				trap(T){
+					{sustain rotaryTableTrigger;}||{waitl(1 s); exit(T);}
+				}
+			}
+			//await(doneAtPos4);
+			abort(bottleAtPos5RT){
+				trap(T){
+					{sustain rotaryTableTrigger;}||{waitl(1 s); exit(T);}
+				}
+			}
+			pause;
 		}
-		await(doneAtPos2);
-		abort(bottleAtPos3_RT){
-			sustain rotaryTableTrigger;
-		}
-		await(doneAtPos3);
-		abort(bottleAtPos4_RT){
-			sustain rotaryTableTrigger;
-		}
-		await(doneAtPos4);
-		abort(bottleAtPos5){
-			sustain rotaryTableTrigger;
-		}
-		
-		
-//				abort(tableAlignedWithSensor){
-//					sustain rotaryTableTrigger;
-//				}
+	}
+	||
+	{
+		{while(true){present(rotaryTableTrigger){emit rotaryTableTriggerCV;} pause;}}
 	}
 }

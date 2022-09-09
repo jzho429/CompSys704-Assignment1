@@ -1,20 +1,15 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="SSRotaryTablePlant" Local="true">
 		<ClockDomain Name="RotaryTablePlantCD" Class="RotaryTablePlant">
-
-
-		input signal tableAlignedWithSensor, bottleAtPos5, capOnBottleAtPos1;
-		output signal rotaryTableTrigger;
-			<!-- <iSignal Name="motConveyorOnOff"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
-			<iSignal Name="bottleAtPos5"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31001" /> -->
+			<iSignal Name="rotaryTableTrigger"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31001" />
 			
-
-			<oSignal Name="bottleAtPos1"    To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
-			<oSignal Name="bottleLeftPos5"  To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
-			<oSignal Name="bottleAtPos5"    To="ConveyorControllerCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
-
-			<!-- <oSignal Name="bottleAtPos1E" 	To="UI." Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
-			<oSignal Name="bottleLeftPos5E" To="UI." Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" /> -->
+			<oSignal Name="tableAlignedWithSensor"	To="RotaryTableControllerCD.tableAlignedWithSensor" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
+			<oSignal Name="RTPutBottleAt2"  		To="ConveyorPlantCD.RTPutBottleAt2" 				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30001" />
+			<oSignal Name="RTPutBottleAt3"    		To="ConveyorPlantCD.RTPutBottleAt3" 				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30001" />
+			<oSignal Name="RTPutBottleAt4"    		To="ConveyorPlantCD.RTPutBottleAt4" 				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30001" />
+			<oSignal Name="RTPutBottleAt5"    		To="ConveyorPlantCD.RTPutBottleAt5" 				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30001" />
+			<oSignal Name="capOnBottleAtPos1"    	To="RotaryTableControllerCD.capOnBottleAtPos1" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
+			<oSignal Name="rotaryTableTriggerE"    	To="VIZCD" 											Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
 		</ClockDomain>
 	</SubSystem>
 </System>

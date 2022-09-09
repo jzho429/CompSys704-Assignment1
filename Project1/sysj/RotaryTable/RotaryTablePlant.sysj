@@ -1,61 +1,41 @@
 RotaryTablePlant(
-		input signal tableAlignedWithSensor, bottleAtPos5, capOnBottleAtPos1;
-		output signal rotaryTableTrigger;
+		input signal rotaryTableTrigger;
+		output signal tableAlignedWithSensor, RTPutBottleAt2, RTPutBottleAt3, RTPutBottleAt4, RTPutBottleAt5, capOnBottleAtPos1;
+		output signal rotaryTableTriggerE;
 		)
-->{
-	signal RTPutBottleAt2, RTPutBottleAt3, RTPutBottleAt4, RTPutBottleAt5;
-	int numTurns = 0;
-	while(true) {
-		pause;
-		emit tableAlignedWithSensor;
-		present(rotaryTableTrigger && enable){
-			await(!enable);
-			numTurns++;
-			if(numTurns == 2) {
-				emit RTPutBottleAt2;
+		
+->{	
+	{
+		int bottlePosition = 1;
+		while(true) {
+			emit tableAlignedWithSensor;
+			present(rotaryTableTrigger){
+				await (!rotaryTableTrigger);
+				bottlePosition++;
+				if(bottlePosition == 2) {
+					System.out.println("RT2");
+					emit RTPutBottleAt2;
+				}else if(bottlePosition == 3) {
+					System.out.println("RT3");
+					emit RTPutBottleAt3;
+				}else if(bottlePosition == 4) {
+					System.out.println("RT4");
+					emit RTPutBottleAt4;
+				}else if(bottlePosition == 5) {
+					System.out.println("RT5");
+					bottlePosition = 1;
+					emit RTPutBottleAt5;
+				}
 				abort(rotaryTableTrigger){
 					sustain tableAlignedWithSensor;
 				}
-			}else if(numTurns == 3) {
-				emit RTPutBottleAt3;
-				abort(rotaryTableTrigger){
-					sustain tableAlignedWithSensor;
-				}
-				
-			}else if(numTurns == 4 ) {
-				emit RTPutBottleAt4;
-				abort(rotaryTableTrigger){
-					sustain tableAlignedWithSensor;
-				}
-			}else if(numTurns == 5) {
-				numTurns = 0;
-				emit RTPutBottleAt5;
-				await(!rotaryTableTrigger);
 			}
-		}
-	}
-	||
-	{//capOnBottleAtPos1
-		while(true){
-			await(capAtPos1);
-			abort (immediate (!capAtPos1 && enable)){
-				sustain capOnBottleAtPos1;
-			}
+			pause;
 		}
 	}
 	||//To VIZ
 	{
-		loop {
-			{while(true){present(){emit }}}//pos1
-			||
-			{while(true){present(){emit }}}//pos2
-			||
-			{while(true){present(){emit }}}//pos3
-			||
-			{while(true){present(){emit }}}//pos4
-			||
-			{while(true){present(){emit }}}//pos5
-		}
+		while(true){present(rotaryTableTrigger){emit rotaryTableTriggerE;}pause;}
 	}
 	
 }

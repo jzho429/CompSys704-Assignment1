@@ -1,7 +1,8 @@
 ConveyorPlant(
-		input signal motConveyorOnOff, rotaryTableTrigger, bottleAtPos0, RTPutBottleAt2, RTPutBottleAt3, RTPutBottleAt4, RTPutBottleAt5; 											//Input
+		input signal motConveyorOnOff, rotaryTableTrigger, bottleAtPos0, RTPutBottleAt2, RTPutBottleAt3, RTPutBottleAt4, RTPutBottleAt5; //Input
 		output signal bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, bottleLeftPos5; //Output to Controller
-		output signal bottleAtPos1E, bottleAtPos2E, bottleAtPos3E, bottleAtPos4E, bottleAtPos5E, bottleLeftPos5E;														//Output to GUI
+		output signal bottleAtPos1E, bottleAtPos2E, bottleAtPos3E, bottleAtPos4E, bottleAtPos5E, bottleLeftPos5E;//Output to GUI
+		output signal bottleAtPos1RT, bottleAtPos2RT, bottleAtPos3RT, bottleAtPos4RT, bottleAtPos5RT; //Output to RotaryTable
 		)
 ->{
 	/*
@@ -38,7 +39,8 @@ ConveyorPlant(
 	{
 		{
 			while(true){
-				await(bottleAtPos0 && motorOn);
+				//await(bottleAtPos0 && motorOn);
+				await(motorOn);
 				abort(rotaryTableTrigger){
 					System.out.println("Bottle at pos 1");
 					sustain bottleAtPos1;
@@ -109,19 +111,28 @@ ConveyorPlant(
 	}
 	||
 	{
-		loop { //To VIZ
-			{while(true){present(bottleAtPos1){emit bottleAtPos1E;} pause;}}
-			||
-			{while(true){present(bottleAtPos2){emit bottleAtPos2E;} pause;}}
-			||
-			{while(true){present(bottleAtPos3){emit bottleAtPos3E;} pause;}}
-			||
-			{while(true){present(bottleAtPos4){emit bottleAtPos4E;} pause;}}
-			||
-			{while(true){present(bottleAtPos5){emit bottleAtPos5E;} pause;}}
-			||
-			{while(true){present(bottleLeftPos5){emit bottleLeftPos5E;} pause;}}
-			pause;
-		}
+		//To VIZ
+		{while(true){present(bottleAtPos1){emit bottleAtPos1E;} pause;}}
+		||
+		{while(true){present(bottleAtPos2){emit bottleAtPos2E;} pause;}}
+		||
+		{while(true){present(bottleAtPos3){emit bottleAtPos3E;} pause;}}
+		||
+		{while(true){present(bottleAtPos4){emit bottleAtPos4E;} pause;}}
+		||
+		{while(true){present(bottleAtPos5){emit bottleAtPos5E;} pause;}}
+		||
+		{while(true){present(bottleLeftPos5){emit bottleLeftPos5E;} pause;}}
+		||
+		//To Rotary Table
+		{while(true){present(bottleAtPos1){emit bottleAtPos1RT;} pause;}}
+		||
+		{while(true){present(bottleAtPos2){emit bottleAtPos2RT;} pause;}}
+		||
+		{while(true){present(bottleAtPos3){emit bottleAtPos3RT;} pause;}}
+		||
+		{while(true){present(bottleAtPos4){emit bottleAtPos4RT;} pause;}}
+		||
+		{while(true){present(bottleAtPos5){emit bottleAtPos5RT;} pause;}}
 	}
 }
