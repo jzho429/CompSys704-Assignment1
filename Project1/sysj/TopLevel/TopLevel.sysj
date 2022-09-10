@@ -1,0 +1,34 @@
+import run.GUI;
+RotaryTableController(
+		input int signal bottleCount, fillAmount1E, fillAmount2E, fillAmount3E, fillAmount4E;
+        input signal bottleLeftPos5, start;
+        output int signal fillAmount1, fillAmount2, fillAmount3, fillAmount4;
+		output signal bottleAtPos0;
+		)
+->{
+    {
+        new Thread(new GUI()).start();
+
+        int currentCount = 0;
+        while(true){
+            await(start);
+            trap(T){
+                loop{
+                    await(bottleLeftPos5);
+                    if(currentCount > (Integer)#bottleCount){exit(T);}
+                    emit bottleAtPos0;
+                    currentCount++;
+                    pause;
+                }
+            }
+        }
+    }
+    ||
+    {while(true){present(fillAmount1E){emit fillAmount1((Integer)#fillAmount1E);} pause;}}
+    ||
+    {while(true){present(fillAmount2E){emit fillAmount2((Integer)#fillAmount2E);} pause;}}
+    ||
+    {while(true){present(fillAmount3E){emit fillAmount3((Integer)#fillAmount3E);} pause;}}
+    ||
+    {while(true){present(fillAmount4E){emit fillAmount4((Integer)#fillAmount4E);} pause;}}
+}

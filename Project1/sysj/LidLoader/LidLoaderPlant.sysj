@@ -1,41 +1,41 @@
-import run.GUI;
-
 Plant(
 		input signal pusherExtend,vacOn,armSource,armDest;
-		input signal enable,refill;
-		output signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty;
-		output signal pusherRetractedE,pusherExtendedE,WPgrippedE,armAtSourceE,armAtDestE,emptyE;
+		//input signal enable,refill;
+		output signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest; //,empty;
+		//output signal pusherRetractedE,pusherExtendedE,WPgrippedE,armAtSourceE,armAtDestE,emptyE;
 		)
 ->
 {
-	new Thread(new GUI()).start();
-
 	signal capDec;
 	int signal capPos;
 	emit capPos(0);
 	{// Arm
 		while(true){
-			abort(armSource && enable){
+			abort(armSource){
 				sustain armAtDest;
 			}
-			await(!enable);
-			abort(armDest && enable){
+			pause;
+			//await(!enable);
+			abort(armDest){
 				sustain armAtSource;
 			}
-			await(!enable);
+			pause;
+			//await(!enable);
 		}
 	}
 	||
 	{// Pusher
 		while(true){
-			abort(pusherExtend && enable){
+			abort(pusherExtend){
 				sustain pusherRetracted;
 			}
-			await(!enable);
-			abort(!pusherExtend && enable){
+			pause;
+			//await(!enable);
+			abort(!pusherExtend){
 				sustain pusherExtended;
 			}
-			await(!enable);
+			pause;
+			//await(!enable);
 		}
 	}
 	||
@@ -77,24 +77,24 @@ Plant(
 			await(refill);
 		}
 	}
-	||
-	{
-		int capcount = 5;
-		while(true){
-			present(capDec){
-				if(capcount > 0)
-					capcount--;
-			}
-			present(refill){
-				capcount = 5;
-			}
-//			present(pusherRetracted){
-				if(capcount == 0)
-					emit empty;
-//			}
-			pause;
-		}
-	}
+// 	||
+// 	{
+// 		int capcount = 5;
+// 		while(true){
+// 			present(capDec){
+// 				if(capcount > 0)
+// 					capcount--;
+// 			}
+// 			present(refill){
+// 				capcount = 5;
+// 			}
+// //			present(pusherRetracted){
+// 				if(capcount == 0)
+// 					emit empty;
+// //			}
+// 			pause;
+// 		}
+// 	}
 	||
 	{// To viz
 		{while(true){present(pusherRetracted){emit pusherRetractedE;} pause;}}

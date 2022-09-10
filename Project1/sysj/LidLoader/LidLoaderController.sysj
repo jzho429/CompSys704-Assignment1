@@ -1,33 +1,35 @@
 Controller(
-		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,request;
+		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest; //,empty,request;
+		input signal bottleAtPos3;
 		output signal pusherExtend,vacOn,armSource,armDest;
-		input Integer signal mode;
-		input signal pusherExtendM,vacOnM,armSourceM,armDestM;
+		// input Integer signal mode;
+		// input signal pusherExtendM,vacOnM,armSourceM,armDestM;
 		)
 ->
 {		
-	signal selectM, selectA;
+	// signal selectM, selectA;
 	
-	{//Manual
-		while(true){
-			await(selectM);
-			abort(selectA){
-				{while(true){present(pusherExtendM){emit pusherExtend;} pause;}}
-				||
-				{while(true){present(vacOnM){emit vacOn;} pause;}}
-				||
-				{while(true){present(armSourceM){emit armSource;} pause;}}
-				||
-				{while(true){present(armDestM){emit armDest;} pause;}}
-			}
-		}
-	}	
-	||
+	// {//Manual
+	// 	while(true){
+	// 		await(selectM);
+	// 		abort(selectA){
+	// 			{while(true){present(pusherExtendM){emit pusherExtend;} pause;}}
+	// 			||
+	// 			{while(true){present(vacOnM){emit vacOn;} pause;}}
+	// 			||
+	// 			{while(true){present(armSourceM){emit armSource;} pause;}}
+	// 			||
+	// 			{while(true){present(armDestM){emit armDest;} pause;}}
+	// 		}
+	// 	}
+	// }	
+	// ||
 	{//Auto
 		while(true){
-			await(selectA);
-			abort(selectM){
-				await(request && !empty);
+			// await(selectA);
+			// abort(selectM){
+				//await(request && !empty);
+				await(bottleAtPos3);
 				abort(pusherExtended){
 					sustain pusherExtend;
 				}
@@ -43,20 +45,21 @@ Controller(
 					{await (WPgripped);
 					sustain armDest;}
 				}
+				pause;
 			}
 		}
 	}
-	||
-	{//Mode select
-		await(mode);
-		while(true){
-			if((Integer)#mode == 1){
-				emit selectM;
-			}
-			else{
-				emit selectA;
-			}
-			pause;
-		}
-	}
+	// ||
+	// {//Mode select
+	// 	await(mode);
+	// 	while(true){
+	// 		if((Integer)#mode == 1){
+	// 			emit selectM;
+	// 		}
+	// 		else{
+	// 			emit selectA;
+	// 		}
+	// 		pause;
+	// 	}
+	// }
 }

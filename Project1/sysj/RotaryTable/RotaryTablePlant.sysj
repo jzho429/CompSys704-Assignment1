@@ -42,10 +42,6 @@ RotaryTablePlant(
 						{sustain tableAlignedWithSensor;}
 					}
 				}
-				// abort(rotaryTableTrigger){
-				// 	System.out.println("tableAligned");
-				// 	sustain tableAlignedWithSensor;
-				// }
 			}
 			pause;
 		}

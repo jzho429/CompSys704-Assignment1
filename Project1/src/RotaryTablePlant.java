@@ -49,8 +49,8 @@ public class RotaryTablePlant extends ClockDomain{
         break;
       
       case 1 : 
-        if(rotaryTableTrigger.getprestatus()){//sysj\RotaryTable\RotaryTablePlant.sysj line: 55, column: 23
-          rotaryTableTriggerE.setPresent();//sysj\RotaryTable\RotaryTablePlant.sysj line: 55, column: 43
+        if(rotaryTableTrigger.getprestatus()){//sysj\RotaryTable\RotaryTablePlant.sysj line: 51, column: 23
+          rotaryTableTriggerE.setPresent();//sysj\RotaryTable\RotaryTablePlant.sysj line: 51, column: 43
           currsigs.addElement(rotaryTableTriggerE);
           active[11]=1;
           ends[11]=1;
@@ -574,8 +574,8 @@ public class RotaryTablePlant extends ClockDomain{
 
   public void thread4257(int [] tdone, int [] ends){
         S4252=1;
-    if(rotaryTableTrigger.getprestatus()){//sysj\RotaryTable\RotaryTablePlant.sysj line: 55, column: 23
-      rotaryTableTriggerE.setPresent();//sysj\RotaryTable\RotaryTablePlant.sysj line: 55, column: 43
+    if(rotaryTableTrigger.getprestatus()){//sysj\RotaryTable\RotaryTablePlant.sysj line: 51, column: 23
+      rotaryTableTriggerE.setPresent();//sysj\RotaryTable\RotaryTablePlant.sysj line: 51, column: 43
       currsigs.addElement(rotaryTableTriggerE);
       active[11]=1;
       ends[11]=1;

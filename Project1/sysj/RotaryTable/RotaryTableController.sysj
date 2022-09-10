@@ -21,13 +21,13 @@ RotaryTableController(
 			//await(doneAtPos3);
 			abort(bottleAtPos4RT){
 				trap(T){
-					{sustain rotaryTableTrigger;}||{waitl(1 s); exit(T);}
+					{sustain rotaryTableTrigger;}||{waitl(0.5 s); exit(T);}
 				}
 			}
 			//await(doneAtPos4);
 			abort(bottleAtPos5RT){
 				trap(T){
-					{sustain rotaryTableTrigger;}||{waitl(1 s); exit(T);}
+					{sustain rotaryTableTrigger;}||{waitl(0.5 s); exit(T);}
 				}
 			}
 			pause;
@@ -38,3 +38,4 @@ RotaryTableController(
 		{while(true){present(rotaryTableTrigger){emit rotaryTableTriggerCV;} pause;}}
 	}
 }
+	

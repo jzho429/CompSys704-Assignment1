@@ -2,12 +2,22 @@
 	<SubSystem Name="SSFillerController" Local="true">
 		<ClockDomain Name="FillerControllerCD" Class="FillerController">
 
-			<iSignal Name="bottleAtPos1"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30000" />
-			<iSignal Name="bottleLeftPos5"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30000" />
-			<iSignal Name="bottleAtPos5"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30000" />
+			<iSignal Name="bottleAtPos2"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
+			<iSignal Name="dosUnitEvac"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
+			<iSignal Name="dosUnitFilled"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
 
-            <oSignal Name="motconveyorOnOff"    To="ConveyorPlantCD.motConveyorOnOff" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30001" />
-        
+			<iSignal Name="fillAmmount1"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
+			<iSignal Name="fillAmmount2"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
+			<iSignal Name="fillAmmount3"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
+			<iSignal Name="fillAmmount4"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
+
+			<oSignal Name="valveInjectorOnOff"  To="FillerPlantCD.valveInjectorOnOff" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32001" />
+            <oSignal Name="valveInletOnOff"		To="FillerPlantCD.valveInletOnOff" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32001" />
+			<oSignal Name="dosUnitValveRetract" To="FillerPlantCD.dosUnitValveRetract" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32001" />
+			<oSignal Name="dosUnitValveExtend"  To="FillerPlantCD.dosUnitValveExtend" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32001" />
+
+			<oSignal Name="stillWorking"    	To="FillerPlantCD.stillWorking" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32001" />
+			<oSignal Name="doneAtPos2"    		To="RotaryTableControllerCD.doneAtPos2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
 		</ClockDomain>
 	</SubSystem>
 </System>

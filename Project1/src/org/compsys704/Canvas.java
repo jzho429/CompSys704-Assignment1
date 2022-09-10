@@ -2,83 +2,150 @@ package org.compsys704;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class Canvas extends JPanel {
-	BufferedImage arm1;
-	BufferedImage arm2;
-	BufferedImage p1;
-	BufferedImage p2;
-	BufferedImage loader;
-	BufferedImage cap;
-	
-	public Canvas(){
-		try {
-			BufferedImage bi = ImageIO.read(new File("res/arm.png"));
-			arm1 = bi.getSubimage(0, 0, 64, 256);
-			arm2 = bi.getSubimage(71, 0, 48, 256);
-			loader = ImageIO.read(new File("res/loader.png"));
-			bi = ImageIO.read(new File("res/pusher.png"));
-			p1 = bi.getSubimage(0, 0, 238, 68);
-			p2 = bi.getSubimage(238, 0, 172, 68);
-			cap = ImageIO.read(new File("res/cap.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(1);;
-		}
-	}
-	
-	@Override
-	protected void paintComponent(Graphics g){
-		super.paintComponent(g);
-		g.drawImage(loader, 0, 100, null);
-		
-		if(States.ARM_AT_DEST)
-			g.drawImage(arm1, 0, 0, null);
-		else
-			g.drawImage(arm2, 30, 0, null);
-		
-		if(States.GRIPPED){
-			if(States.ARM_AT_DEST){
-				g.setColor(Color.black);
-				g.fillOval(10, 11, 30, 30);
-				g.setColor(Color.red);
-				g.fillOval(10, 11, 15, 15);
 
-			}
-			else{
-				g.setColor(Color.black);
-				g.fillOval(40, 243, 30, 30);
-				g.setColor(Color.red);
-				g.fillOval(35, 232, 15, 15);
-			}
-			g.setColor(Color.black);
+	private static final Color CHARCOAL = new Color(38, 70, 83);
+	private static final Color PERSIANGREEN = new Color(42, 157, 143);
+	private static final Color MAIZECRAYOLA = new Color(233, 196, 106);
+	private static final Color SANDYBROWN = new Color(244, 162, 97);
+	private static final Color BURNTSIENNA = new Color(231, 111, 81);
+	private static final Color MOUNTBATTENPINK = new Color(161, 134, 158);
+	private static final Color PERIWINKLECRAYOLA = new Color(187, 194, 226);
+
+	public Canvas() {
+
+	}
+
+	private void turnConveyorOnOff(Graphics g, boolean on) {
+		if (on) {
+			g.setColor(PERSIANGREEN);
+		} else {
+			g.setColor(CHARCOAL);
 		}
-//		else{
-			if(States.CAP_READY){ // A cap is pushed to the source pos
-				g.setColor(Color.black);
-				g.fillOval(40, 243, 30, 30);
+		g.fillRoundRect(30, 400, 640, 50, 20, 20);
+	}
+
+	private void turnTurnTableOnOff(Graphics g, boolean on) {
+		if (on) {
+			g.setColor(PERSIANGREEN);
+		} else {
+			g.setColor(PERIWINKLECRAYOLA);
+		}
+		g.fillOval(200, 180, 300, 300);
+	}
+
+	private void setBottlePosColor(Graphics g, boolean[] bottlePos) {
+		int[][] positions = {
+				{ 170, 410 },
+				{ 170, 230 },
+				{ 335, 140 },
+				{ 500, 230 },
+				{ 500, 410 }
+		};
+		for (int i = 0; i < bottlePos.length; i++) {
+			if (bottlePos[i]) {
+				g.setColor(PERSIANGREEN);
+			} else {
+				g.setColor(SANDYBROWN);
 			}
-//		}
-		
-		if(States.PUSHER_RETRACTED){
-			g.drawImage(p1, 90, 225, null);
-			if(!States.MAG_EMPTY){
-				g.setColor(Color.black);
-				g.fillOval(154, 243, 30, 30);
-			}
+			g.fillRoundRect(positions[i][0], positions[i][1], 30, 30, 10, 10);
 		}
-		else{
-			g.drawImage(p2, 90, 225, null);
+		g.setColor(Color.BLACK);
+		g.drawString("1", 180, 432);
+		g.drawString("2", 180, 252);
+		g.drawString("3", 345, 162);
+		g.drawString("4", 510, 252);
+		g.drawString("5", 510, 432);
+	}
+
+	private void turnLidLoaderOnOff(Graphics g, boolean on) {
+		if (on) {
+			g.setColor(PERSIANGREEN);
+		} else {
+			g.setColor(MAIZECRAYOLA);
 		}
-		
-		if(!States.MAG_EMPTY){
-			g.drawImage(cap, 152, 155, null);
+		g.fillRect(280, 20, 140, 100);
+		g.setColor(Color.BLACK);
+		g.drawString("Lid Loader", 305, 80);
+	}
+
+	private void turnCapperOnOff(Graphics g, boolean on) {
+		if (on) {
+			g.setColor(PERSIANGREEN);
+		} else {
+			g.setColor(MOUNTBATTENPINK);
 		}
+		g.fillRect(540, 120, 140, 100);
+		g.setColor(Color.BLACK);
+		g.drawString("Capper", 575, 180);
+	}
+
+	private void setFillerColor(Graphics g, int colorPosition) {
+		g.setColor(BURNTSIENNA);
+		switch (colorPosition) {
+			case 1:
+				g.fillRect(120, 20, 100, 75);
+				g.fillRect(20, 95, 100, 75);
+				g.fillRect(120, 95, 100, 75);
+				g.setColor(PERSIANGREEN);
+				g.fillRect(20, 20, 100, 75);
+				break;
+			case 2:
+				g.fillRect(20, 95, 100, 75);
+				g.fillRect(120, 95, 100, 75);
+				g.fillRect(20, 20, 100, 75);
+				g.setColor(PERSIANGREEN);
+				g.fillRect(120, 20, 100, 75);
+
+				break;
+			case 3:
+				g.fillRect(120, 95, 100, 75);
+				g.fillRect(20, 20, 100, 75);
+				g.fillRect(120, 20, 100, 75);
+				g.setColor(PERSIANGREEN);
+				g.fillRect(20, 95, 100, 75);
+
+				break;
+			case 4:
+				g.fillRect(20, 20, 100, 75);
+				g.fillRect(120, 20, 100, 75);
+				g.fillRect(20, 95, 100, 75);
+				g.setColor(PERSIANGREEN);
+				g.fillRect(120, 95, 100, 75);
+				break;
+			default:
+				g.fillRect(120, 20, 100, 75);
+				g.fillRect(20, 95, 100, 75);
+				g.fillRect(120, 95, 100, 75);
+				g.fillRect(20, 20, 100, 75);
+				break;
+		}
+		g.setColor(Color.BLACK);
+		g.drawLine(120, 20, 120, 170);
+		g.drawLine(20, 95, 220, 95);
+		g.drawString("Fill 1", 50, 65);
+		g.drawString("Fill 2", 150, 65);
+		g.drawString("Fill 3", 50, 140);
+		g.drawString("Fill 4", 150, 140);
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.setFont(g.getFont().deriveFont(20f));
+		// Conveyor
+		turnConveyorOnOff(g, false);
+		// Turntable
+		turnTurnTableOnOff(g, false);
+		// Bottle Positions
+		setBottlePosColor(g, new boolean[] { false, false, false, true, false });
+		// Fillers
+		setFillerColor(g, 1);
+		// LidLoader
+		turnLidLoaderOnOff(g, false);
+		// Capper
+		turnCapperOnOff(g, false);
 	}
 }

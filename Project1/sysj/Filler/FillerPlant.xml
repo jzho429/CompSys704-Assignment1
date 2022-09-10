@@ -1,35 +1,18 @@
 <System xmlns="http://systemjtechnology.com">
-	<SubSystem Name="SSConveyorPlant" Local="true">
-		<ClockDomain Name="ConveyorPlantCD" Class="ConveyorPlant">
+	<SubSystem Name="SSFillerPlant" Local="true">
+		<ClockDomain Name="FillerPlantCD" Class="FillerPlant">
  
-			<iSignal Name="motConveyorOnOff"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
-			<iSignal Name="rotaryTableTrigger"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
-			<!-- <iSignal Name="bottleAtPos0"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" /> -->
-			<iSignal Name="RTPutBottleAt2"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
-			<iSignal Name="RTPutBottleAt3"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
-			<iSignal Name="RTPutBottleAt4"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
-			<iSignal Name="RTPutBottleAt5"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30001" />
+			<iSignal Name="valveInjectorOnOff"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32001" />
+			<iSignal Name="valveInletOnOff"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32001" />
+			<iSignal Name="dosUnitValveRetract"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32001" />
+			<iSignal Name="dosUnitValveExtend"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32001" />
 			
+			<iSignal Name="stillWorking"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32001" />
 
-			<oSignal Name="bottleAtPos1"    To="ConveyorControllerCD.bottleAtPos1" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
-			<oSignal Name="bottleAtPos2"    To="FillerControllerCD" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32000" />
-			<oSignal Name="bottleAtPos3"    To="LidLoaderControllerCD" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="bottleAtPos4"    To="CapperControllerCD" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
-			<oSignal Name="bottleAtPos5"	To="ConveyorControllerCD.bottleAtPos5" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
-			<oSignal Name="bottleLeftPos5"  To="ConveyorControllerCD.bottleLeftPos5" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />
+			<oSignal Name="dosUnitEvac" 	To="FillerControllerCD.dosUnitEvac" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32000" />
+			<oSignal Name="dosUnitFilled" 	To="FillerControllerCD.dosUnitFilled" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32000" />
 
-			<oSignal Name="bottleAtPos1RT"  To="RotaryTableControllerCD.bottleAtPos1RT" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
-			<oSignal Name="bottleAtPos2RT"  To="RotaryTableControllerCD.bottleAtPos2RT" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
-			<oSignal Name="bottleAtPos3RT"  To="RotaryTableControllerCD.bottleAtPos3RT" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
-			<oSignal Name="bottleAtPos4RT"  To="RotaryTableControllerCD.bottleAtPos4RT" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
-			<oSignal Name="bottleAtPos5RT"  To="RotaryTableControllerCD.bottleAtPos5RT" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
-			
-			<oSignal Name="bottleAtPos1E"   To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="bottleAtPos2E"   To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="bottleAtPos3E"   To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="bottleAtPos4E"   To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="bottleAtPos5E"   To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="bottleLeftPos5E" To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="fillerE" 	To="UI." 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
 		</ClockDomain>
 	</SubSystem>
 </System>

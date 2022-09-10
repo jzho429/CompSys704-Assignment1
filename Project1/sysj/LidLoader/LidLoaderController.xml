@@ -14,11 +14,11 @@
 			<oSignal Name="armSource"    To="PlantCD.armSource"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 			<oSignal Name="armDest"      To="PlantCD.armDest"      Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 
-			<iSignal Name="mode"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<!-- <iSignal Name="mode"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			<iSignal Name="pusherExtendM" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			<iSignal Name="vacOnM"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			<iSignal Name="armSourceM"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
-			<iSignal Name="armDestM"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="armDestM"      Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" /> -->
 		</ClockDomain>
 	</SubSystem>
 </System>
