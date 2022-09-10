@@ -1,0 +1,52 @@
+FillerController(
+		input signal bottleAtPos2, dosUnitEvac, dosUnitFilled; //signal fill1, fill2, fill3, fill4
+		output signal valveInjectorOnOff, valveInletOnOff, dosUnitValveRetract, dosUnitValveExtend; 
+		)
+->{
+    //int filler = 0;
+    while(true){
+        //filler++;
+        if (filler1)
+        await(bottleAtPos2);
+        emit valveInjectorOnOff;
+        abort(immediate(dosUnitFilled)){
+            {sustain valveInjectorOnOff;}
+            ||
+            {sustain dosUnitValveRetract;}
+        }
+        abort(immediate(dosUnitEvac)){
+            {sustain valveInletOnOff;}
+            ||
+            {sustainDosUnitValveExtend;}
+        }
+        System.out.println("Liquid 1 " + (Integer)#fill1 + "%");
+        
+        emit doneAtPos2;
+        pause;
+    }
+}
+
+signal fill int 25
+/*
+ Input signal(s)
+    o bottleAtPos2 – Present when the bottle is at position 2
+    o dosUnitEvac – Present when a pressure canister is at bottom
+    o dosUnitFilled – Present when a pressure canister is at top
+• Output signal(s)
+    o valveInjectorOnOff – Turns on or off the valve injector (absence of this signal will turn off the injector)
+    o valveInletOnOff – Opens the inlet valve (absence of this signal will close the inlet)
+    o dosUnitValveRetract – brings the pressure canister to top
+    o dosUnitValveExtend – brings the pressure canister to bottom
+ */
+
+/*Basic operation of the filler clock-domain would be:
+1. Check if a bottle is at position 2, if not, wait until it arrives
+2. Turn on the valve injector
+3. Check if a pressure canister is at bottom, if so bring it up to fill the bottle with liquid
+4. Wait until the cylinder is fully retracted (i.e. at top)
+5. Turn off the injector
+6. Open the inlet
+7. Force down the pressure canister
+8. Wait until the cylinder is fully extended (i.e. at bottom)
+9. Close the inlet 
+*/

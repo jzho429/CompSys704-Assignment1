@@ -1,0 +1,63 @@
+CapperPlant(
+        input signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
+        output signal gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos;
+        )
+->{
+    {
+        while(true) {//lower gripper
+            present(cylPos5ZaxisExtend){
+                abort(!cylPos5ZaxisExtend){
+                    System.out.println("gripperZAxisLowered");
+                    sustain gripperZAxisLowered;
+                }
+            }
+            pause;
+        }
+    }
+    ||
+    {
+        while(true) {//raise the gripper
+            present(!cylPos5ZaxisExtend){
+                abort(cylPos5ZaxisExtend){
+                    System.out.println("gripperZAxisLifted");
+                    sustain gripperZAxisLifted;
+                }
+            }
+            pause;
+        }
+    }
+    ||
+    {
+        while(true) {//twist the gripper
+            present(gripperTurnExtend){
+                System.out.println("Twist: grip turn extend");
+                present(!gripperTurnRetract){
+                    System.out.println("Twist: not grip turn retract");
+                    abort(!gripperTurnExtend && gripperTurnRetract){
+                        System.out.println("gripperTurnFinalPos");
+                        sustain gripperTurnFinalPos;
+                    }
+                }
+                
+            }
+            pause;
+        }
+    }
+    ||
+    {
+        while(true) {//untwist the gripper
+            present(!gripperTurnExtend){
+                //System.out.println("Untwist: not grip turn extent");
+                present(gripperTurnRetract){
+                    System.out.println("Untwist: grip turn retract");
+                    abort(gripperTurnExtend && !gripperTurnRetract){
+                    System.out.println("gripperTurnHomePos");
+                    sustain gripperTurnHomePos;
+                    }
+                }
+                
+            }
+            pause;
+        }
+    }    
+}

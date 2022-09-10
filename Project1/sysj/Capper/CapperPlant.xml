@@ -1,0 +1,18 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SSCapperPlant" Local="true">
+		<ClockDomain Name="CapperPlantCD" Class="CapperPlant">
+ 
+			<iSignal Name="cylPos5ZaxisExtend"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33001" />
+			<iSignal Name="gripperTurnRetract"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33001" />
+			<iSignal Name="gripperTurnExtend"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33001" />
+			<iSignal Name="capGripperPos5Extend"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33001" />
+			<iSignal Name="cylClampBottleExtend"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="33001" />
+
+			<oSignal Name="gripperZAxisLowered" To="CapperControllerCD.gripperZAxisLowered" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+			<oSignal Name="gripperZAxisLifted" 	To="CapperControllerCD.gripperZAxisLifted" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+			<oSignal Name="gripperTurnHomePos" 	To="CapperControllerCD.gripperTurnHomePos" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+			<oSignal Name="gripperTurnFinalPos"	To="CapperControllerCD.gripperTurnFinalPos" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="33000" />
+
+		</ClockDomain>
+	</SubSystem>
+</System>

@@ -1,0 +1,77 @@
+CapperController(
+		input signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos;
+		output signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
+        output signal doneAtPos4;
+		)
+->{
+    while(true){
+        pause;
+		await(bottleAtPos4);
+		abort(gripperZAxisLowered){
+			{System.out.println("Clamp");
+                sustain cylClampBottleExtend;}// Clamps the bottle
+			||
+			{
+			System.out.println("Low grip");
+            sustain cylPos5ZaxisExtend;}// Lowers the gripper
+		}
+		//await(gripperZAxisLowered);
+		abort(gripperTurnFinalPos){
+			{System.out.println("clamp2");
+                sustain cylClampBottleExtend;}// Clamps the bottle
+			||
+			{System.out.println("low grip2");
+                sustain cylPos5ZaxisExtend;}// Keeps the gripper lowered
+			||
+			{System.out.println("grip cap");
+            sustain capGripperPos5Extend;}// Grips the cap
+			||
+			{System.out.println("twist");
+            sustain gripperTurnExtend;}// Twists the cap
+		}
+		abort(gripperTurnHomePos){
+			{System.out.println("clamp3");
+            sustain cylClampBottleExtend;} // Clamps the bottle
+			||
+			{System.out.println("low grip 3");
+            sustain cylPos5ZaxisExtend;} // Lowers the gripper
+			||
+			{System.out.println("untwistgrip");
+            sustain gripperTurnRetract;}// Untwist the gripper
+		}
+        System.out.println("aborted lmao");
+		abort(gripperZAxisLifted){
+            System.out.println("still clampin");
+			sustain cylClampBottleExtend; // Clamps the bottle
+		}
+        System.out.println("CapperController: doneAtPos4");
+        emit doneAtPos4;
+    }
+}
+
+
+
+/*
+• Input signal(s)
+    o bottleAtPos4 – Present when a bottle is at position 4
+    o gripperZAxisLowered – Present when the gripper/capper unit is fully lowered
+    o gripperZAxisLifted – Present when the gripper/capper unit is fully lifted
+    o gripperTurnHomePos – Present when the gripper is at the initial position
+    o gripperTurnFinalPos – Present when the gripper is fully turned
+• Output singal(s)
+    o cylPos5ZaxisExtend – brings the gripper down (absence of this signal will bring the gripper up)
+    o gripperTurnRetract – untwists the gripper
+    o gripperTurnExtend – twists the gripper
+    o capGripperPos5Extend – Grips the cap (absence of this signal will release the cap)
+    o cylClampBottleExtend – Clamps the bottle (absence of this signal will unclamp the bottle)
+
+Basic operation of the capper clock-domain would be:
+1. Check if a bottle is at position 4, if not, wait until it arrives
+2. Clamp the bottle and lower the gripper
+3. Wait until the gripper is lowered, and grip the cap
+4. Twist the gripper
+5. Release the cap
+6. Untwist the gripper
+7. Raise the gripper
+8. Unclamp the bottle
+*/

@@ -668,7 +668,7 @@ public class ConveyorPlant extends ClockDomain{
       case 1 : 
         switch(S180){
           case 0 : 
-            if(motorOn_1.getprestatus()){//sysj\Conveyor\ConveyorPlant.sysj line: 43, column: 11
+            if(bottleAtPos0.getprestatus() && motorOn_1.getprestatus()){//sysj\Conveyor\ConveyorPlant.sysj line: 42, column: 11
               S180=1;
               System.out.println("Bottle at pos 1");//sysj\Conveyor\ConveyorPlant.sysj line: 45, column: 6
               bottleAtPos1.setPresent();//sysj\Conveyor\ConveyorPlant.sysj line: 46, column: 6
