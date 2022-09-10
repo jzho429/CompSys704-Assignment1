@@ -14,21 +14,38 @@ RotaryTablePlant(
 				bottlePosition++;
 				if(bottlePosition == 2) {
 					System.out.println("RT2");
-					emit RTPutBottleAt2;
+					abort(rotaryTableTrigger){
+						{sustain RTPutBottleAt2;}
+						||
+						{sustain tableAlignedWithSensor;}
+					}
 				}else if(bottlePosition == 3) {
 					System.out.println("RT3");
-					emit RTPutBottleAt3;
+					abort(rotaryTableTrigger){
+						{sustain RTPutBottleAt3;}
+						||
+						{sustain tableAlignedWithSensor;}
+					}
 				}else if(bottlePosition == 4) {
 					System.out.println("RT4");
-					emit RTPutBottleAt4;
+					abort(rotaryTableTrigger){
+						{sustain RTPutBottleAt4;}
+						||
+						{sustain tableAlignedWithSensor;}
+					}
 				}else if(bottlePosition == 5) {
 					System.out.println("RT5");
 					bottlePosition = 1;
-					emit RTPutBottleAt5;
+					abort(rotaryTableTrigger){
+						{sustain RTPutBottleAt5;}
+						||
+						{sustain tableAlignedWithSensor;}
+					}
 				}
-				abort(rotaryTableTrigger){
-					sustain tableAlignedWithSensor;
-				}
+				// abort(rotaryTableTrigger){
+				// 	System.out.println("tableAligned");
+				// 	sustain tableAlignedWithSensor;
+				// }
 			}
 			pause;
 		}
