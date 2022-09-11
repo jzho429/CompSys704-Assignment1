@@ -129,15 +129,17 @@ public class POSCanvas extends JPanel {
         System.out.println("Sending order");
         int quantity = getQuantity();
         int total = getTotal();
-        if (quantity == 0 || total != 100)
+        if (quantity == 0 || total != 100) {
+            System.out.println("Invalid order");
             return;
+        }
         try {
             bottleCount.sustain(quantity);
             filler1.sustain(Integer.parseInt(liquid1.getText()));
             filler2.sustain(Integer.parseInt(liquid2.getText()));
             filler3.sustain(Integer.parseInt(liquid3.getText()));
             filler4.sustain(Integer.parseInt(liquid4.getText()));
-            start.emit(1, 500);
+            start.sustain(true);
         } catch (IOException e) {
             System.out.println("Order failed to send");
             e.printStackTrace();

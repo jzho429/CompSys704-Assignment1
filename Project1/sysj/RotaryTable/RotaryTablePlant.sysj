@@ -36,11 +36,14 @@ RotaryTablePlant(
 				}else if(bottlePosition == 5) {
 					System.out.println("RT5");
 					bottlePosition = 1;
-					abort(rotaryTableTrigger){
-						{sustain RTPutBottleAt5;}
-						||
-						{sustain tableAlignedWithSensor;}
-					}
+					emit RTPutBottleAt5;
+					await(!rotaryTableTrigger);
+					// abort(rotaryTableTrigger){
+					// 	{sustain RTPutBottleAt5;}
+					// 	||
+					// 	{sustain tableAlignedWithSensor;}
+					// }
+					System.out.println("RT5 left");
 				}
 			}
 			pause;

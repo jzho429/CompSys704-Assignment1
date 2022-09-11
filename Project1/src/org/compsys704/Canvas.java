@@ -161,11 +161,14 @@ public class Canvas extends JPanel {
 		setBottlePosColor(g, states);
 
 		// Fillers
-		int currentFiller = States.fillerE
-				? States.filler1E ? 1 : States.filler2E ? 2 : States.filler3E ? 3 : States.filler4E ? 4 : 0
-				: 0;
-		if (States.fillerE) {
-			setFillerColor(g, currentFiller);
+		if (States.filler1E) {
+			setFillerColor(g, 1);
+		} else if (States.filler2E) {
+			setFillerColor(g, 2);
+		} else if (States.filler3E) {
+			setFillerColor(g, 3);
+		} else if (States.filler4E) {
+			setFillerColor(g, 4);
 		} else {
 			setFillerColor(g, 0);
 		}

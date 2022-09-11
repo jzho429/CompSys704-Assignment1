@@ -1,1 +1,12 @@
 /org/
+/LidLoaderController.class
+/LidLoaderPlant.class
+/CapperController.class
+/CapperPlant.class
+/ConveyorController.class
+/ConveyorPlant.class
+/FillerController.class
+/FillerPlant.class
+/RotaryTableController.class
+/RotaryTablePlant.class
+/TopLevel.class

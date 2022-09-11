@@ -126,6 +126,8 @@ ConveyorPlant(
 		||
 		{while(true){present(bottleLeftPos5){emit bottleLeftPos5E;} pause;}}
 		||
+		{while(true){present(bottleLeftPos5){emit bottleLeftPos5TL;} pause;}}
+		||
 		//To Rotary Table
 		{while(true){present(bottleAtPos1){emit bottleAtPos1RT;} pause;}}
 		||

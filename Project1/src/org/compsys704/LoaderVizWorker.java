@@ -29,14 +29,26 @@ public class LoaderVizWorker extends Worker {
 				break;
 			case "filler1E":
 				States.filler1E = status;
+				States.filler2E = false;
+				States.filler3E = false;
+				States.filler4E = false;
 				break;
 			case "filler2E":
+				States.filler1E = false;
 				States.filler2E = status;
+				States.filler3E = false;
+				States.filler4E = false;
 				break;
 			case "filler3E":
+				States.filler1E = false;
+				States.filler2E = false;
 				States.filler3E = status;
+				States.filler4E = false;
 				break;
 			case "filler4E":
+				States.filler1E = false;
+				States.filler2E = false;
+				States.filler3E = false;
 				States.filler4E = status;
 				break;
 			case "rotaryTableTriggerE":

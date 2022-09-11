@@ -12,24 +12,25 @@ RotaryTableController(
 					{sustain rotaryTableTrigger;}||{waitl(0.5 s); exit(T);}
 				}
 			}
-			//await(doneAtPos2);
+			await(doneAtPos2);
 			abort(bottleAtPos3RT){
 				trap(T){
 					{sustain rotaryTableTrigger;}||{waitl(0.5 s); exit(T);}
 				}
 			}
-			//await(doneAtPos3);
+			await(doneAtPos3);
 			abort(bottleAtPos4RT){
 				trap(T){
 					{sustain rotaryTableTrigger;}||{waitl(0.5 s); exit(T);}
 				}
 			}
-			//await(doneAtPos4);
+			await(doneAtPos4);
 			abort(bottleAtPos5RT){
 				trap(T){
 					{sustain rotaryTableTrigger;}||{waitl(0.5 s); exit(T);}
 				}
 			}
+			
 			pause;
 		}
 	}

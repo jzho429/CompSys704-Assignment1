@@ -32,6 +32,7 @@ FillerController(
 
                         emit filler((Integer)#filler + 1);
                         System.out.println((Integer)#filler);
+                        trap(P){{waitl(1 s); exit(P);}}
                         if((Integer)#filler >= 4){
                             System.out.println("exiting");
                             exit(Z);

@@ -4,8 +4,8 @@ import com.systemj.Signal;
 import com.systemj.input_Channel;
 import com.systemj.output_Channel;
 
-public class Controller extends ClockDomain{
-  public Controller(String name){super(name);}
+public class LidLoaderController extends ClockDomain{
+  public LidLoaderController(String name){super(name);}
   Vector currsigs = new Vector();
   private boolean df = false;
   private char [] active;

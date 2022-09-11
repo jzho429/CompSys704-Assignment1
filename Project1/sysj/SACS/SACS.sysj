@@ -33,7 +33,7 @@ SACS(
         }
         ||
         {
-            present(accesssToManufacturing && cardInZone4) {
+            present(cardInZone4) {
                 if((Integer)#cardAccessLevel == 1) 
                 {
                     System.out.println("Access to Zone 4 Granted, suspending bottling process");
@@ -48,7 +48,7 @@ SACS(
         }
         ||
         {
-            present(accesssToManufacturing && cardInZone5) {
+            present(cardInZone5) {
                 if((Integer)#cardAccessLevel == 1) 
                 {
                     System.out.println("Access to Zone 5 Granted, suspending bottling process");
@@ -63,7 +63,7 @@ SACS(
         }
         ||
         {
-            present(accesssToManufacturing && cardInZone6) {
+            present(cardInZone6) {
                 if((Integer)#cardAccessLevel == 1) 
                 {
                     System.out.println("Access to Zone 6 Granted, suspending bottling process");
@@ -78,7 +78,7 @@ SACS(
         }
         ||
         {
-            present(accessToOffice && cardInZone7) {
+            present(cardInZone7) {
                 if((Integer)#cardAccessLevel == 2) 
                 {
                     System.out.println("Access to Zone 7 Granted");

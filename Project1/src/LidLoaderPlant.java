@@ -4,8 +4,8 @@ import com.systemj.Signal;
 import com.systemj.input_Channel;
 import com.systemj.output_Channel;
 
-public class Plant extends ClockDomain{
-  public Plant(String name){super(name);}
+public class LidLoaderPlant extends ClockDomain{
+  public LidLoaderPlant(String name){super(name);}
   Vector currsigs = new Vector();
   private boolean df = false;
   private char [] active;

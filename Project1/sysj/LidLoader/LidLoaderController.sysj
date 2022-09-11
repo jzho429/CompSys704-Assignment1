@@ -1,4 +1,4 @@
-Controller(
+LidLoaderController(
 		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest; //,empty,request;
 		input signal bottleAtPos3;
 		output signal pusherExtend,vacOn,armSource,armDest;

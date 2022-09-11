@@ -12,26 +12,25 @@ TopLevel(
         new Thread(new POS()).start();
 
         int currentCount = 0;
-        while(true){
+        //while(true){
             await(start);
             trap(T){
                 loop{
                     if(currentCount > 0){
                         await(bottleLeftPos5);
                     }
-                    System.out.println("Bottle Count: " + currentCount);
-                    //if(currentCount > (Integer)#bottleCount){
-                    if(currentCount > 5){
+                    if(currentCount > (Integer)#bottleCount){
                         System.out.println("Stopped");
                         exit(T);
                     }
+                    System.out.println("Bottle Count: " + currentCount);
                     emit bottleAtPos0;
                     currentCount++;
                     pause;
                 }
             }
-            pause;
-        }
+        //    pause;
+        //}
     }
     ||
     {while(true){present(fillAmount1E){emit fillAmount1((Integer)#fillAmount1E);} pause;}}
