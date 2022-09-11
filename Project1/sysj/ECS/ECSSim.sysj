@@ -1,0 +1,165 @@
+ECSSim(
+		input int signal sec1AC, sec2AC, sec3AC;
+		input int signal sec1LightBulb, sec2LightBulb, sec3LightBulb;
+		input signal smokeAlarm;
+		output int signal sec1Temp, sec2Temp, sec3Temp;
+		output signal sec1PIR, sec2PIR, sec3PIR;
+		output int signal sec1Lumen, sec2Lumen, sec3Lumen;
+		output signal sec1Smoke, sec2Smoke, sec3Smoke;
+		output int signal time;
+		)
+->{
+		int signal temp1;
+		int signal temp2;
+		int signal temp3;
+		emit temp1(18);
+		emit temp2(22);
+		emit temp3(25);
+	{//Temp
+		
+		{
+			while(true){
+				present(sec1AC){
+					emit temp1(#sec1AC);
+					emit sec1Temp(#sec1AC);}
+					pause;
+				}
+		}
+		||
+		{
+			while(true){
+				present(sec2AC){
+					emit temp2(#sec2AC);
+					emit sec2Temp(#sec2AC);}
+					pause;
+				}
+		}
+		||
+		{
+			while(true){
+				present(sec3AC){
+					emit temp3(#sec3AC);
+					emit sec3Temp(#sec3AC);}
+					pause;
+				}
+		}
+	}
+	||
+	{//PIR 5% randomly occupied
+		int rand;
+		while(true){
+			rand = (int)(Math.random()*100);
+			if(rand < 2){
+				emit sec1PIR;
+			}else if(rand > 2 && rand < 4){
+				emit sec2PIR;
+			}else if(rand > 4 && rand < 6){
+				emit sec3PIR;
+			}
+			pause;
+		}
+	}
+	||
+	{//Light
+		// int lumen1 = 500;
+		// int lumen2 = 1000;
+		// int lumen3 = 0;
+		{
+			while(true){
+				present(sec1LightBulb){
+					abort(!sec1LightBulb){
+						sustain sec1Lumen(1000);
+					}	
+				}else{
+					emit sec1Lumen(500);
+				}
+				pause;
+			}
+		}
+		||
+		{
+			while(true){
+				present(sec2LightBulb){
+					abort(!sec2LightBulb){
+						sustain sec2Lumen(1000);
+					}	
+				}else{
+					emit sec2Lumen(1000);
+				}
+				pause;
+			}
+		}
+		||
+		{
+			while(true){
+				present(sec3LightBulb){
+					abort(!sec3LightBulb){
+						sustain sec3Lumen(1000);
+					}	
+				}else{
+					emit sec3Lumen(0);
+				}
+				pause;
+			}
+		}
+
+	}
+	||
+	{//Smoke. 1% chance
+		int rand;
+		while(true){
+			rand = (int)(Math.random()*100);
+			if(rand == 1){
+				emit sec1Smoke(true);
+			}else if(rand == 2){
+				emit sec2Smoke(true);
+			}else if(rand ==3){
+				emit sec3Smoke(true);
+			}
+			pause;
+		}
+	}
+	||
+	{//Time
+		int time = 0;
+		while(true){
+			if (time > 2400){
+				time = 0;
+			}
+			time = time + 100;
+			emit time(time);
+			pause;
+		}
+	}
+	||
+	{//Constant signal sends
+		{while(true){emit sec1Temp(#temp1);pause;}}
+		||
+		{while(true){emit sec2Temp(#temp2);pause;}}
+		||
+		{while(true){emit sec3Temp(#temp3);pause;}}
+	}
+}
+
+
+/*
+Grouping Zones
+	Section 1 (Office) 1, 7
+	Section 2 (Storage) 2, 3, 4
+	Section 3 (Manufacturing) 5, 6
+
+Need to control, Lights, Temperature, Humidity
+take in account time, and human presence
+
+Inputs:
+Temperature Sensor
+Humidity
+Light intensity
+Human presence++
+Smoke alarm++
+
+Output:
+Lightbulb
+AC device
+
+*/

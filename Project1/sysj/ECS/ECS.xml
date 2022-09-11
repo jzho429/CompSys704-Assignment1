@@ -2,11 +2,29 @@
 	<SubSystem Name="SSECS" Local="true">
 		<ClockDomain Name="ECSCD" Class="ECS">
 
-			<iSignal Name="bottleAtPos1"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30000" />
-			<iSignal Name="bottleLeftPos5"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30000" />
-			<iSignal Name="bottleAtPos5"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="30000" />
+			<iSignal Name="sec1Temp"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			<iSignal Name="sec2Temp"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			<iSignal Name="sec3Temp"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			<iSignal Name="sec1PIR"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			<iSignal Name="sec2PIR"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			<iSignal Name="sec3PIR"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			<iSignal Name="sec1Lumen"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			<iSignal Name="sec2Lumen"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			<iSignal Name="sec3Lumen"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			<iSignal Name="sec1Smoke"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			<iSignal Name="sec2Smoke"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			<iSignal Name="sec3Smoke"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
 
-            <oSignal Name="motconveyorOnOff"    To="ConveyorPlantCD.motConveyorOnOff" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30001" />
+			<iSignal Name="time"    	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12345" />
+			
+            <oSignal Name="sec1AC"			To="ECSSimCD.sec1AC" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="54321" />
+			<oSignal Name="sec2AC"			To="ECSSimCD.sec2AC" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="54321" />
+			<oSignal Name="sec3AC"			To="ECSSimCD.sec3AC" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="54321" />
+			<oSignal Name="sec1LightBulb"	To="ECSSimCD.sec1LightBulb" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="54321" />
+			<oSignal Name="sec2LightBulb"	To="ECSSimCD.sec2LightBulb" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="54321" />
+			<oSignal Name="sec3LightBulb"	To="ECSSimCD.sec3LightBulb" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="54321" />
+
+			<oSignal Name="smokeAlarm"		To="ECSSimCD.smokeAlarm" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="54321" />
         
 		</ClockDomain>
 	</SubSystem>

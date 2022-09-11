@@ -1,10 +1,227 @@
 SACS(
-    input signal 
-    output signal 
+    input int signal cardAccessLevel;
+    input int signal badgeInZone1, badgeInZone2, badgeInZone3, badgeInZone4, badgeInZone5, badgeInZone6, badgeInZone7;
+    input signal cardInZone1, cardInZone2, cardInZone3, cardInZone4, cardInZone5, cardInZone6, cardInZone7;
+    output signal suspendBottling;
+    output signal accessToOffice, accesssToManufacturing;
+    output signal allowInZone1, allowInZone2, allowInZone3, allowInZone4, allowInZone5, allowInZone6, allowInZone7;
+    output int signal badgeInZone1T, badgeInZone2T, badgeInZone3T, badgeInZone4T, badgeInZone5T, badgeInZone6T, badgeInZone7T;
 )
 ->{
-
+    { // Card access to zones
+        {   
+            while(true) 
+            {
+                if((Integer)#cardAccessLevel == 1)
+                {
+                    emit(accessToOffice);
+                }
+                else if((Integer)#cardAccessLevel == 2){
+                    emit(accesssToManufacturing);
+                }
+                pause;
+            }
+        }
+    }
+    ||
+    { // Accessing zones
+        {
+            present(cardInZone1) {
+                System.out.println("Access to Zone 1 Granted");
+                emit(allowInZone1);
+            }
+            pause;
+        }
+        ||
+        {
+            present(cardInZone2) {
+                System.out.println("Access to Zone 2 Granted");
+                emit(allowInZone2);
+            }
+            pause;
+        }
+        ||
+        {
+            present(cardInZone3) {
+                System.out.println("Access to Zone 3 Granted");
+                emit(allowInZone3);
+            }
+            pause;
+        }
+        ||
+        {
+            present(accesssToManufacturing && cardInZone4) {
+                System.out.println("Access to Zone 4 Granted");
+                emit(allowInZone4);
+            }
+            pause;
+        }
+        ||
+        {
+            present(accesssToManufacturing && cardInZone5) {
+                System.out.println("Access to Zone 5 Granted");
+                emit(allowInZone5);
+            }
+            pause;
+        }
+        ||
+        {
+            present(accesssToManufacturing && cardInZone6) {
+                System.out.println("Access to Zone 6 Granted");
+                emit(allowInZone6);
+            }
+            pause;
+        }
+        ||
+        {
+            present(accessToOffice && cardInZone7) {
+                System.out.println("Access to Zone 7 Granted");
+                emit(allowInZone7);
+            }
+            pause;
+        }
+    }
+    ||
+    { // Badge location transmission
+        {
+            while(true) 
+            {
+                present(badgeInZone1) {
+                    System.out.println(#badgeInZone1 + " is in Zone 1");
+                    emit(badgeInZone1T((Integer)#badgeInZone1));
+                }
+                pause;
+            }
+        }
+        ||
+        {
+            while(true) 
+            {
+                present(badgeInZone2) {
+                    System.out.println(#badgeInZone2 + " is in Zone 2");
+                    emit(badgeInZone2T((Integer)#badgeInZone2));
+                }
+                pause;
+            }
+        }
+        ||
+        {
+            while(true) 
+            {
+                present(badgeInZone3) {
+                    System.out.println(#badgeInZone3 + " is in Zone 3");
+                    emit(badgeInZone3T((Integer)#badgeInZone3));
+                }
+                pause;
+            }
+        }
+        ||
+        {
+            while(true) 
+            {
+                present(badgeInZone4) {
+                    System.out.println(#badgeInZone4 + " is in Zone 4");
+                    emit(badgeInZone4T((Integer)#badgeInZone4));
+                }
+                pause;
+            }
+        }
+        ||
+        {
+            while(true) 
+            {
+                present(badgeInZone5) {
+                    System.out.println(#badgeInZone5 + " is in Zone 5");
+                    emit(badgeInZone5T((Integer)#badgeInZone5));
+                }
+                pause;
+            }
+        }
+        ||
+        {
+            while(true) 
+            {
+                present(badgeInZone6) {
+                    System.out.println(#badgeInZone6 + " is in Zone 6");
+                    emit(badgeInZone6T((Integer)#badgeInZone6));
+                }
+                pause;
+            }
+        }
+        ||
+        {
+            while(true) 
+            {
+                present(badgeInZone7) {
+                    System.out.println(#badgeInZone7 + " is in Zone 7");
+                    emit(badgeInZone7T((Integer)#badgeInZone7));
+                }
+                pause;
+            }
+        }
+    }
+    ||
+    { // Bottling suspension
+        {
+            while(true) 
+            {
+                present(allowInZone4) 
+                {
+                    System.out.println("Access to Zone 4 has been granted, suspending bottling process...");
+                    sustain(suspendBottling);
+                    pause;
+                }
+            }
+            ||
+            while(true) 
+            {
+                present(allowInZone5) 
+                {
+                    System.out.println("Access to Zone 5 has been granted, suspending bottling process...");
+                    sustain(suspendBottling);
+                    pause;
+                }
+            }
+            ||
+            while(true) 
+            {
+                present(cardInZone6) 
+                {
+                    System.out.println("Access to Zone 6 has been granted, suspending bottling process...");
+                    sustain(suspendBottling)
+                    pause;
+                }
+            }
+            ||
+            while(true) 
+            {
+                present(badgeInZone4T) 
+                {
+                    System.out.println("Personnel in Zone 4, suspending bottling process...");
+                    sustain(suspendBottling)
+                    pause;
+                }
+            }
+            ||
+            while(true) 
+            {
+                present(badgeInZone5T) 
+                {
+                    System.out.println("Personnel in Zone 5, suspending bottling process...");
+                    sustain(suspendBottling)
+                    pause;
+                }
+            }
+            ||
+            while(true) 
+            {
+                present(badgeInZone6T) 
+                {
+                    System.out.println("Personnel in Zone 6, suspending bottling process...");
+                    sustain(suspendBottling)
+                    pause;
+                }
+            }
+        }
+    }
 }
-
-// Inputs: Access card info, Carry on badge
-// Outputs: Access to location, Location from badge, Susped bottling

@@ -1,7 +1,7 @@
 ConveyorPlant(
 		input signal motConveyorOnOff, rotaryTableTrigger, bottleAtPos0, RTPutBottleAt2, RTPutBottleAt3, RTPutBottleAt4, RTPutBottleAt5; //Input
 		output signal bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, bottleLeftPos5; //Output to Controller
-		output signal bottleAtPos1E, bottleAtPos2E, bottleAtPos3E, bottleAtPos4E, bottleAtPos5E, bottleLeftPos5E;//Output to GUI
+		output signal bottleAtPos1E, bottleAtPos2E, bottleAtPos3E, bottleAtPos4E, bottleAtPos5E, bottleLeftPos5E, motorOn, bottleLeftPos5TL;//Output to GUI
 		output signal bottleAtPos1RT, bottleAtPos2RT, bottleAtPos3RT, bottleAtPos4RT, bottleAtPos5RT; //Output to RotaryTable
 		)
 ->{
@@ -14,7 +14,6 @@ ConveyorPlant(
 	* 4 = at Pos4
 	* 5 = at Pos5
 	*/
-	signal motorOn;
 	{
 		loop { //Handles ConveyorController Signals
 			abort(immediate (motConveyorOnOff)){

@@ -1,0 +1,30 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SSECSSim" Local="true">
+		<ClockDomain Name="ECSSimCD" Class="ECSSim">
+
+			<iSignal Name="sec1AC"			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="54321" />
+			<iSignal Name="sec2AC"			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="54321" />
+			<iSignal Name="sec3AC"			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="54321" />
+			<iSignal Name="sec1LightBulb"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="54321" />
+			<iSignal Name="sec2LightBulb"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="54321" />
+			<iSignal Name="sec3LightBulb"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="54321" />
+
+			<iSignal Name="smokeAlarm"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="54321" />
+
+			<oSignal Name="sec1Temp"	To="ECSCD.sec1Temp"   	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			<oSignal Name="sec2Temp"	To="ECSCD.sec2Temp"		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			<oSignal Name="sec3Temp"    To="ECSCD.sec3Temp"		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			<oSignal Name="sec1PIR"		To="ECSCD.sec1PIR"		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			<oSignal Name="sec2PIR"		To="ECSCD.sec2PIR"		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			<oSignal Name="sec3PIR"		To="ECSCD.sec3PIR"		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			<oSignal Name="sec1Lumen"	To="ECSCD.sec1Lumen"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			<oSignal Name="sec2Lumen"	To="ECSCD.sec2Lumen"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			<oSignal Name="sec3Lumen"	To="ECSCD.sec3Lumen"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			<oSignal Name="sec1Smoke"	To="ECSCD.sec1Smoke"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			<oSignal Name="sec2Smoke"	To="ECSCD.sec2Smoke"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			<oSignal Name="sec3Smoke"	To="ECSCD.sec3Smoke"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+			
+			<oSignal Name="time"    	To="ECSCD.time"		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12345" />
+		</ClockDomain>
+	</SubSystem>
+</System>

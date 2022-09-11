@@ -6,10 +6,10 @@
 			<iSignal Name="dosUnitEvac"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
 			<iSignal Name="dosUnitFilled"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
 
-			<iSignal Name="fillAmmount1"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
-			<iSignal Name="fillAmmount2"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
-			<iSignal Name="fillAmmount3"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
-			<iSignal Name="fillAmmount4"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
+			<iSignal Name="fillAmount1"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
+			<iSignal Name="fillAmount2"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
+			<iSignal Name="fillAmount3"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
+			<iSignal Name="fillAmount4"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="32000" />
 
 			<oSignal Name="valveInjectorOnOff"  To="FillerPlantCD.valveInjectorOnOff" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32001" />
             <oSignal Name="valveInletOnOff"		To="FillerPlantCD.valveInletOnOff" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32001" />

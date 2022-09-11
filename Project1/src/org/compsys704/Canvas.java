@@ -135,17 +135,53 @@ public class Canvas extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setFont(g.getFont().deriveFont(20f));
+
 		// Conveyor
-		turnConveyorOnOff(g, false);
+		if (States.conveyorOnE) {
+			turnConveyorOnOff(g, true);
+		} else {
+			turnConveyorOnOff(g, false);
+		}
+
 		// Turntable
-		turnTurnTableOnOff(g, false);
+		if (States.rotaryTableTriggerE) {
+			turnTurnTableOnOff(g, true);
+		} else {
+			turnTurnTableOnOff(g, false);
+		}
+
 		// Bottle Positions
-		setBottlePosColor(g, new boolean[] { false, false, false, true, false });
+		boolean[] states = {
+				States.bottleAtPos1E,
+				States.bottleAtPos2E,
+				States.bottleAtPos3E,
+				States.bottleAtPos4E,
+				States.bottleAtPos5E
+		};
+		setBottlePosColor(g, states);
+
 		// Fillers
-		setFillerColor(g, 1);
+		int currentFiller = States.fillerE
+				? States.filler1E ? 1 : States.filler2E ? 2 : States.filler3E ? 3 : States.filler4E ? 4 : 0
+				: 0;
+		if (States.fillerE) {
+			setFillerColor(g, currentFiller);
+		} else {
+			setFillerColor(g, 0);
+		}
+
 		// LidLoader
-		turnLidLoaderOnOff(g, false);
+		if (States.bottleAtPos3E) {
+			turnLidLoaderOnOff(g, true);
+		} else {
+			turnLidLoaderOnOff(g, false);
+		}
+
 		// Capper
-		turnCapperOnOff(g, false);
+		if (States.bottleAtPos5E) {
+			turnCapperOnOff(g, true);
+		} else {
+			turnCapperOnOff(g, false);
+		}
 	}
 }

@@ -1,31 +1,43 @@
 ECS(
 		input int signal sec1Temp, sec2Temp, sec3Temp;
 		input signal sec1PIR, sec2PIR, sec3PIR;
-		input int signal sec1Light, sec2Light, sec3Light;
+		input int signal sec1Lumen, sec2Lumen, sec3Lumen;
 		input signal sec1Smoke, sec2Smoke, sec3Smoke;
+		input int signal time;
 		output int signal sec1AC, sec2AC, sec3AC;
 		output int signal sec1LightBulb, sec2LightBulb, sec3LightBulb;
 		output signal smokeAlarm;
 		)
 ->{
+	int startTime = 900; //working hours
+	int endTime = 1700;
+	signal sec1Occupied, sec2Occupied, sec3Occupied, workingHours;
 	{//Temperature
-		int roomTemp = 22;
-		int sec1, sec2, sec3
-		int signal temp;
+		//int goalTemp = 22;
 		{
 			while(true){
+				present(workingHours){if ((Integer)#sec1Temp != 22){
+					System.out.println(#sec1Temp);
+					System.out.println("AC 1 on");
+					emit sec1AC(22);}}
 			pause;
 			}
 		}
 		||
 		{
 			while(true){
+				present(workingHours){if ((Integer)#sec2Temp != 22){
+					System.out.println("AC 2 on");
+					emit sec2AC(22);}}
 			pause;
 			}
 		}
 		||
 		{
 			while(true){
+				present(workingHours){if ((Integer)#sec3Temp != 22){
+					System.out.println("AC 3 on");
+					emit sec3AC(22);}}
 			pause;
 			}
 		}
@@ -33,25 +45,94 @@ ECS(
 	}
 	||
 	{//Person detection
-		loop {
-			
-		pause;
-		}
+		{while(true){present(sec1PIR){
+			System.out.println("Sec 1 Person Detected");
+			emit sec1Occupied;}pause;}}
+		||
+		{while(true){present(sec2PIR){
+			System.out.println("Sec 2 Person Detected");
+			emit sec2Occupied;}pause;}}
+		||
+		{while(true){present(sec3PIR){
+			System.out.println("Sec 3 Person Detected");
+			emit sec3Occupied;}pause;}}	
 	}
 	||
 	{//Light detection
-		loop {
-			
+		//int minLumens = 800;
+		{
+			while(true){
+				present(workingHours){
+					await(sec1Occupied);
+					abort(!sec1Occupied){
+						if((Integer)#sec1Lumen < 800){
+							System.out.println("Section 1 Lights On");
+							sustain sec1LightBulb(100);
+						}
+					}
+				}
+			pause;
+			}
+		}
+		||
+		{
+			while(true){
+				present(workingHours){
+					await(sec2Occupied);
+					abort(!sec2Occupied){
+						if((Integer)#sec2Lumen < 800){
+							System.out.println("Section 2 Light On");
+							sustain sec2LightBulb(100);
+						}
+					}
+				}
+			pause;
+			}
+		}
+		||
+		{
+			while(true){
+				present(workingHours){
+					await(sec3Occupied);
+					abort(!sec3Occupied){
+						if((Integer)#sec3Lumen < 800){
+							System.out.println("Section 3 Lights On");
+							sustain sec3LightBulb(100);
+						}
+					}
+				}
+			pause;
+			}
+		}
+	}
+	||
+	{//Time updater
+		int startTime = 900; //working hours
+		int endTime = 1700;
+		while(true){
+			if((Integer)#time > 900 && (Integer)#time < 2100){
+				System.out.println("Working Hours");
+				emit workingHours;
+			}else {
+				System.out.println("Not Working Hours");
+			}
 		pause;
 		}
 	}
 	||
-	{
-		{while(true){present(sec1Smoke){emit smokeAlarm;} pause;}}
+	{//Smoke detection
+		{while(true){present(sec1Smoke){
+			System.out.println("Sec1 Smoke Alarm");
+			emit smokeAlarm;} 
+			pause;}}
 		||
-		{while(true){present(sec2Smoke){emit smokeAlarm;} pause;}}
+		{while(true){present(sec2Smoke){
+			System.out.println("Sec2 Smoke Alarm");
+			emit smokeAlarm;} pause;}}
 		||
-		{while(true){present(sec3Smoke){emit smokeAlarm;} pause;}}
+		{while(true){present(sec3Smoke){
+			System.out.println("Sec3 Smoke Alarm");
+			emit smokeAlarm;} pause;}}
 	}
 }
 
@@ -69,8 +150,8 @@ Inputs:
 Temperature Sensor
 Humidity
 Light intensity
-Human presence
-Smoke alarm
+Human presence++
+Smoke alarm++
 
 Output:
 Lightbulb

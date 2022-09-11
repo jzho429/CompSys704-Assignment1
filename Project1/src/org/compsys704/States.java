@@ -13,5 +13,5 @@ public class States {
 	public static volatile boolean filler3E = false;
 	public static volatile boolean filler4E = false;
 	public static volatile boolean rotaryTableTriggerE = false;
-	public static volatile int fillerVal = 0;
+	public static volatile boolean conveyorOnE = false;
 }

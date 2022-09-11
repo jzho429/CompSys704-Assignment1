@@ -7,7 +7,7 @@ public class LoaderVizWorker extends Worker {
 
 	@Override
 	public void setSignal(boolean status) {
-		System.out.println(signame + " " + status);
+		// System.out.println(signame + " " + status);
 		switch (signame) {
 			case "bottleAtPos1E":
 				States.bottleAtPos1E = status;
@@ -42,6 +42,9 @@ public class LoaderVizWorker extends Worker {
 			case "rotaryTableTriggerE":
 				States.rotaryTableTriggerE = status;
 				break;
+			case "conveyorOnE":
+				States.conveyorOnE = status;
+				break;
 			default:
 				System.err.println("Wrong sig name : " + signame);
 				System.exit(1);
@@ -50,7 +53,7 @@ public class LoaderVizWorker extends Worker {
 
 	static final List<String> signames = Arrays.asList("bottleAtPos1E", "bottleAtPos2E", "bottleAtPos3E",
 			"bottleAtPos4E", "bottleAtPos5E", "fillerE", "filler1E", "filler2E", "filler3E", "filler4E",
-			"rotaryTableTriggerE");
+			"rotaryTableTriggerE", "conveyorOnE");
 
 	@Override
 	public boolean hasSignal(String sn) {

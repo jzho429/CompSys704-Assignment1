@@ -1,4 +1,5 @@
 import run.GUI;
+import run.POS;
 TopLevel(
 		input int signal bottleCount, fillAmount1E, fillAmount2E, fillAmount3E, fillAmount4E;
         input signal bottleLeftPos5, start;
@@ -8,19 +9,28 @@ TopLevel(
 ->{
     {
         new Thread(new GUI()).start();
+        new Thread(new POS()).start();
 
         int currentCount = 0;
         while(true){
             await(start);
             trap(T){
                 loop{
-                    await(bottleLeftPos5);
-                    if(currentCount > (Integer)#bottleCount){exit(T);}
+                    if(currentCount > 0){
+                        await(bottleLeftPos5);
+                    }
+                    System.out.println("Bottle Count: " + currentCount);
+                    //if(currentCount > (Integer)#bottleCount){
+                    if(currentCount > 5){
+                        System.out.println("Stopped");
+                        exit(T);
+                    }
                     emit bottleAtPos0;
                     currentCount++;
                     pause;
                 }
             }
+            pause;
         }
     }
     ||
@@ -30,5 +40,14 @@ TopLevel(
     ||
     {while(true){present(fillAmount3E){emit fillAmount3((Integer)#fillAmount3E);} pause;}}
     ||
-    {while(true){present(fillAmount4E){emit fillAmount4((Integer)#fillAmount4E);} pause;}}
+    {
+        while(true){
+            present(fillAmount4E){
+                emit fillAmount4((Integer)#fillAmount4E);
+                //System.out.println("Fill Amount 4: " + (Integer)#fillAmount4E);
+            }
+            System.out.println("Fill Amount 4: " + (Integer)#fillAmount4E);
+            pause;
+        }
+    }
 }

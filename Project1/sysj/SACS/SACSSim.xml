@@ -1,0 +1,46 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SSSACSSim" Local="true">
+		<ClockDomain Name="SACSSimCD" Class="SACSSim">
+
+			<iSignal Name="suspendBottling"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+
+			<iSignal Name="accessToOffice"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+			<iSignal Name="accesssToManufacturing"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+
+			<iSignal Name="allowInZone1"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="allowInZone2"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="allowInZone3"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="allowInZone4"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="allowInZone5"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="allowInZone6"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="allowInZone7"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+
+            <iSignal Name="badgeInZone1T"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="badgeInZone2T"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="badgeInZone3T"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="badgeInZone4T"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="badgeInZone5T"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="badgeInZone6T"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+            <iSignal Name="badgeInZone7T"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
+
+			<oSignal Name="cardAccessLevel"  To="SACSCD.cardAccessLevel" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+
+            <oSignal Name="badgeInZone1"  To="SACSCD.badgeInZone1" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="badgeInZone2"  To="SACSCD.badgeInZone2" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="badgeInZone3"  To="SACSCD.badgeInZone3" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="badgeInZone4"  To="SACSCD.badgeInZone4" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="badgeInZone5"  To="SACSCD.badgeInZone5" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="badgeInZone6"  To="SACSCD.badgeInZone6" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="badgeInZone7"  To="SACSCD.badgeInZone7" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+
+            <oSignal Name="cardInZone1"  To="SACSCD.cardInZone1" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="cardInZone2"  To="SACSCD.cardInZone2" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="cardInZone3"  To="SACSCD.cardInZone3" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="cardInZone4"  To="SACSCD.cardInZone4" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="cardInZone5"  To="SACSCD.cardInZone5" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="cardInZone6"  To="SACSCD.cardInZone6" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+            <oSignal Name="cardInZone7"  To="SACSCD.cardInZone7" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11111" />
+
+		</ClockDomain>
+	</SubSystem>
+</System>
