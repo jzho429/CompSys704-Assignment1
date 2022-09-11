@@ -1,6 +1,5 @@
 SACSSim(
     input signal suspendBottling;
-    input signal accessToOffice, accesssToManufacturing;
     input signal allowInZone1, allowInZone2, allowInZone3, allowInZone4, allowInZone5, allowInZone6, allowInZone7;
     input int signal badgeInZone1T, badgeInZone2T, badgeInZone3T, badgeInZone4T, badgeInZone5T, badgeInZone6T, badgeInZone7T;
     output int signal cardAccessLevel;
@@ -8,12 +7,14 @@ SACSSim(
     output signal cardInZone1, cardInZone2, cardInZone3, cardInZone4, cardInZone5, cardInZone6, cardInZone7;
 )
 ->{
-    emit accessToOffice;
-    emit 
-    { // Allowing access to office / manufacturing
+    { 
         while(true) 
         {
-            
+            present(allowInZone1)
+            {
+				emit(cardInZone1);
+			}
+            pause;
         }
     }
 }

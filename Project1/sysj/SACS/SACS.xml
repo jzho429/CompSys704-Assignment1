@@ -22,9 +22,6 @@
 
             <oSignal Name="suspendBottling"  To="SACSSimCD.suspendBottling" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11112" />
 
-            <oSignal Name="accessToOffice"          To="SACSSimCD.accessToOffice" 	        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11112" />
-            <oSignal Name="accesssToManufacturing"  To="SACSSimCD.accesssToManufacturing" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11112" />
-
             <oSignal Name="allowInZone1"  To="SACSSimCD.allowInZone1" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11112" />
             <oSignal Name="allowInZone2"  To="SACSSimCD.allowInZone2" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11112" />
             <oSignal Name="allowInZone3"  To="SACSSimCD.allowInZone3" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11112" />

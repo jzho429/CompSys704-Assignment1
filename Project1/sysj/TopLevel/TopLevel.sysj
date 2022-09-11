@@ -40,14 +40,5 @@ TopLevel(
     ||
     {while(true){present(fillAmount3E){emit fillAmount3((Integer)#fillAmount3E);} pause;}}
     ||
-    {
-        while(true){
-            present(fillAmount4E){
-                emit fillAmount4((Integer)#fillAmount4E);
-                //System.out.println("Fill Amount 4: " + (Integer)#fillAmount4E);
-            }
-            System.out.println("Fill Amount 4: " + (Integer)#fillAmount4E);
-            pause;
-        }
-    }
+    {while(true){present(fillAmount4E){emit fillAmount4((Integer)#fillAmount4E);} pause;}}
 }

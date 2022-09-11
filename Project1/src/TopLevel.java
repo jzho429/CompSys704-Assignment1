@@ -47,17 +47,15 @@ public class TopLevel extends ClockDomain{
         break;
       
       case 1 : 
-        if(fillAmount4E.getprestatus()){//sysj\TopLevel\TopLevel.sysj line: 45, column: 21
-          fillAmount4.setPresent();//sysj\TopLevel\TopLevel.sysj line: 46, column: 17
+        if(fillAmount4E.getprestatus()){//sysj\TopLevel\TopLevel.sysj line: 43, column: 26
+          fillAmount4.setPresent();//sysj\TopLevel\TopLevel.sysj line: 43, column: 40
           currsigs.addElement(fillAmount4);
-          fillAmount4.setValue((Integer)(fillAmount4E.getpreval() == null ? 0 : ((Integer)fillAmount4E.getpreval()).intValue()));//sysj\TopLevel\TopLevel.sysj line: 46, column: 17
-          System.out.println("Fill Amount 4: " + (Integer)(fillAmount4E.getpreval() == null ? 0 : ((Integer)fillAmount4E.getpreval()).intValue()));//sysj\TopLevel\TopLevel.sysj line: 49, column: 13
+          fillAmount4.setValue((Integer)(fillAmount4E.getpreval() == null ? 0 : ((Integer)fillAmount4E.getpreval()).intValue()));//sysj\TopLevel\TopLevel.sysj line: 43, column: 40
           active[6]=1;
           ends[6]=1;
           tdone[6]=1;
         }
         else {
-          System.out.println("Fill Amount 4: " + (Integer)(fillAmount4E.getpreval() == null ? 0 : ((Integer)fillAmount4E.getpreval()).intValue()));//sysj\TopLevel\TopLevel.sysj line: 49, column: 13
           active[6]=1;
           ends[6]=1;
           tdone[6]=1;
@@ -277,17 +275,15 @@ public class TopLevel extends ClockDomain{
 
   public void thread389(int [] tdone, int [] ends){
         S381=1;
-    if(fillAmount4E.getprestatus()){//sysj\TopLevel\TopLevel.sysj line: 45, column: 21
-      fillAmount4.setPresent();//sysj\TopLevel\TopLevel.sysj line: 46, column: 17
+    if(fillAmount4E.getprestatus()){//sysj\TopLevel\TopLevel.sysj line: 43, column: 26
+      fillAmount4.setPresent();//sysj\TopLevel\TopLevel.sysj line: 43, column: 40
       currsigs.addElement(fillAmount4);
-      fillAmount4.setValue((Integer)(fillAmount4E.getpreval() == null ? 0 : ((Integer)fillAmount4E.getpreval()).intValue()));//sysj\TopLevel\TopLevel.sysj line: 46, column: 17
-      System.out.println("Fill Amount 4: " + (Integer)(fillAmount4E.getpreval() == null ? 0 : ((Integer)fillAmount4E.getpreval()).intValue()));//sysj\TopLevel\TopLevel.sysj line: 49, column: 13
+      fillAmount4.setValue((Integer)(fillAmount4E.getpreval() == null ? 0 : ((Integer)fillAmount4E.getpreval()).intValue()));//sysj\TopLevel\TopLevel.sysj line: 43, column: 40
       active[6]=1;
       ends[6]=1;
       tdone[6]=1;
     }
     else {
-      System.out.println("Fill Amount 4: " + (Integer)(fillAmount4E.getpreval() == null ? 0 : ((Integer)fillAmount4E.getpreval()).intValue()));//sysj\TopLevel\TopLevel.sysj line: 49, column: 13
       active[6]=1;
       ends[6]=1;
       tdone[6]=1;

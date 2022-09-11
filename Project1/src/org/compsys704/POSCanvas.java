@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -12,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.systemj.ipc.TCPSender;
+import com.systemj.netapi.SimpleClient;
 
 public class POSCanvas extends JPanel {
 
@@ -24,6 +25,7 @@ public class POSCanvas extends JPanel {
     private static final Color MOUNTBATTENPINK = new Color(161, 134, 158);
     private static final Color PERIWINKLECRAYOLA = new Color(187, 194, 226);
 
+    private static final String IP = "127.0.0.1";
     JTextField liquid1 = new JTextField();
     JTextField liquid2 = new JTextField();
     JTextField liquid3 = new JTextField();
@@ -32,7 +34,25 @@ public class POSCanvas extends JPanel {
 
     JButton orderButton = new JButton();
 
+    SimpleClient filler1;
+    SimpleClient filler2;
+    SimpleClient filler3;
+    SimpleClient filler4;
+    SimpleClient bottleCount;
+    SimpleClient start;
+
     public POSCanvas() {
+        try {
+            filler1 = new SimpleClient(IP, 50000, "TopLevelCD", "fillAmount1E");
+            filler2 = new SimpleClient(IP, 50000, "TopLevelCD", "fillAmount2E");
+            filler3 = new SimpleClient(IP, 50000, "TopLevelCD", "fillAmount3E");
+            filler4 = new SimpleClient(IP, 50000, "TopLevelCD", "fillAmount4E");
+            bottleCount = new SimpleClient(IP, 50000, "TopLevelCD", "bottleCount");
+            start = new SimpleClient(IP, 50000, "TopLevelCD", "start");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         setLayout(null);
         liquid1.setColumns(8);
         liquid2.setColumns(8);
@@ -106,13 +126,23 @@ public class POSCanvas extends JPanel {
 
     void sendOrder() {
         // Send order to the server
+        System.out.println("Sending order");
+        int quantity = getQuantity();
+        int total = getTotal();
+        if (quantity == 0 || total != 100)
+            return;
         try {
-            System.out.println("Sending order");
-            TCPSender sender = new TCPSender();
-            sender.;
-            sender.close();
-        } catch (Exception e) {
-            System.out.println("SADGE");
+            bottleCount.sustain(quantity);
+            filler1.sustain(Integer.parseInt(liquid1.getText()));
+            filler2.sustain(Integer.parseInt(liquid2.getText()));
+            filler3.sustain(Integer.parseInt(liquid3.getText()));
+            filler4.sustain(Integer.parseInt(liquid4.getText()));
+            start.emit(1, 500);
+        } catch (IOException e) {
+            System.out.println("Order failed to send");
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid percentages");
             e.printStackTrace();
         }
     }

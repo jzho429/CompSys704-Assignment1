@@ -4,9 +4,6 @@
 
 			<iSignal Name="suspendBottling"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
 
-			<iSignal Name="accessToOffice"          Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
-			<iSignal Name="accesssToManufacturing"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
-
 			<iSignal Name="allowInZone1"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
             <iSignal Name="allowInZone2"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />
             <iSignal Name="allowInZone3"	        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11112" />

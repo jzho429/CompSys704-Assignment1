@@ -3,27 +3,10 @@ SACS(
     input int signal badgeInZone1, badgeInZone2, badgeInZone3, badgeInZone4, badgeInZone5, badgeInZone6, badgeInZone7;
     input signal cardInZone1, cardInZone2, cardInZone3, cardInZone4, cardInZone5, cardInZone6, cardInZone7;
     output signal suspendBottling;
-    output signal accessToOffice, accesssToManufacturing;
     output signal allowInZone1, allowInZone2, allowInZone3, allowInZone4, allowInZone5, allowInZone6, allowInZone7;
     output int signal badgeInZone1T, badgeInZone2T, badgeInZone3T, badgeInZone4T, badgeInZone5T, badgeInZone6T, badgeInZone7T;
 )
 ->{
-    { // Card access to zones
-        {   
-            while(true) 
-            {
-                if((Integer)#cardAccessLevel == 1)
-                {
-                    emit(accessToOffice);
-                }
-                else if((Integer)#cardAccessLevel == 2){
-                    emit(accesssToManufacturing);
-                }
-                pause;
-            }
-        }
-    }
-    ||
     { // Accessing zones
         {
             present(cardInZone1) {
@@ -51,32 +34,59 @@ SACS(
         ||
         {
             present(accesssToManufacturing && cardInZone4) {
-                System.out.println("Access to Zone 4 Granted");
-                emit(allowInZone4);
+                if((Integer)#cardAccessLevel == 1) 
+                {
+                    System.out.println("Access to Zone 4 Granted, suspending bottling process");
+                    sustain(suspendBottling);
+                    emit(allowInZone4);
+                }
+                else{
+                    System.out.println("Access to Zone 4 Denied");
+                }
             }
             pause;
         }
         ||
         {
             present(accesssToManufacturing && cardInZone5) {
-                System.out.println("Access to Zone 5 Granted");
-                emit(allowInZone5);
+                if((Integer)#cardAccessLevel == 1) 
+                {
+                    System.out.println("Access to Zone 5 Granted, suspending bottling process");
+                    sustain(suspendBottling);
+                    emit(allowInZone5);
+                }
+                else{
+                    System.out.println("Access to Zone 5 Denied");
+                }
             }
             pause;
         }
         ||
         {
             present(accesssToManufacturing && cardInZone6) {
-                System.out.println("Access to Zone 6 Granted");
-                emit(allowInZone6);
+                if((Integer)#cardAccessLevel == 1) 
+                {
+                    System.out.println("Access to Zone 6 Granted, suspending bottling process");
+                    sustain(suspendBottling);
+                    emit(allowInZone6);
+                }
+                else{
+                    System.out.println("Access to Zone 6 Denied");
+                }
             }
             pause;
         }
         ||
         {
             present(accessToOffice && cardInZone7) {
-                System.out.println("Access to Zone 7 Granted");
-                emit(allowInZone7);
+                if((Integer)#cardAccessLevel == 2) 
+                {
+                    System.out.println("Access to Zone 7 Granted");
+                    emit(allowInZone7);
+                }
+                else{
+                    System.out.println("Access to Zone 7 Denied");
+                }
             }
             pause;
         }
@@ -88,7 +98,7 @@ SACS(
             {
                 present(badgeInZone1) {
                     System.out.println(#badgeInZone1 + " is in Zone 1");
-                    emit(badgeInZone1T((Integer)#badgeInZone1));
+                    emit(badgeInZone1T);
                 }
                 pause;
             }
@@ -99,7 +109,7 @@ SACS(
             {
                 present(badgeInZone2) {
                     System.out.println(#badgeInZone2 + " is in Zone 2");
-                    emit(badgeInZone2T((Integer)#badgeInZone2));
+                    emit(badgeInZone2T);
                 }
                 pause;
             }
@@ -110,7 +120,7 @@ SACS(
             {
                 present(badgeInZone3) {
                     System.out.println(#badgeInZone3 + " is in Zone 3");
-                    emit(badgeInZone3T((Integer)#badgeInZone3));
+                    emit(badgeInZone3T);
                 }
                 pause;
             }
@@ -120,8 +130,9 @@ SACS(
             while(true) 
             {
                 present(badgeInZone4) {
-                    System.out.println(#badgeInZone4 + " is in Zone 4");
-                    emit(badgeInZone4T((Integer)#badgeInZone4));
+                    System.out.println(#badgeInZone4 + " is in Zone 4, suspending bottling process");
+                    sustain(suspendBottling);
+                    emit(badgeInZone4T);
                 }
                 pause;
             }
@@ -131,8 +142,9 @@ SACS(
             while(true) 
             {
                 present(badgeInZone5) {
-                    System.out.println(#badgeInZone5 + " is in Zone 5");
-                    emit(badgeInZone5T((Integer)#badgeInZone5));
+                    System.out.println(#badgeInZone5 + " is in Zone 5, suspending bottling process");
+                    sustain(suspendBottling);
+                    emit(badgeInZone5T);
                 }
                 pause;
             }
@@ -142,8 +154,9 @@ SACS(
             while(true) 
             {
                 present(badgeInZone6) {
-                    System.out.println(#badgeInZone6 + " is in Zone 6");
-                    emit(badgeInZone6T((Integer)#badgeInZone6));
+                    System.out.println(#badgeInZone6 + " is in Zone 6, suspending bottling process");
+                    sustain(suspendBottling);
+                    emit(badgeInZone6T);
                 }
                 pause;
             }
@@ -154,73 +167,9 @@ SACS(
             {
                 present(badgeInZone7) {
                     System.out.println(#badgeInZone7 + " is in Zone 7");
-                    emit(badgeInZone7T((Integer)#badgeInZone7));
+                    emit(badgeInZone7T);
                 }
                 pause;
-            }
-        }
-    }
-    ||
-    { // Bottling suspension
-        {
-            while(true) 
-            {
-                present(allowInZone4) 
-                {
-                    System.out.println("Access to Zone 4 has been granted, suspending bottling process...");
-                    sustain(suspendBottling);
-                    pause;
-                }
-            }
-            ||
-            while(true) 
-            {
-                present(allowInZone5) 
-                {
-                    System.out.println("Access to Zone 5 has been granted, suspending bottling process...");
-                    sustain(suspendBottling);
-                    pause;
-                }
-            }
-            ||
-            while(true) 
-            {
-                present(cardInZone6) 
-                {
-                    System.out.println("Access to Zone 6 has been granted, suspending bottling process...");
-                    sustain(suspendBottling)
-                    pause;
-                }
-            }
-            ||
-            while(true) 
-            {
-                present(badgeInZone4T) 
-                {
-                    System.out.println("Personnel in Zone 4, suspending bottling process...");
-                    sustain(suspendBottling)
-                    pause;
-                }
-            }
-            ||
-            while(true) 
-            {
-                present(badgeInZone5T) 
-                {
-                    System.out.println("Personnel in Zone 5, suspending bottling process...");
-                    sustain(suspendBottling)
-                    pause;
-                }
-            }
-            ||
-            while(true) 
-            {
-                present(badgeInZone6T) 
-                {
-                    System.out.println("Personnel in Zone 6, suspending bottling process...");
-                    sustain(suspendBottling)
-                    pause;
-                }
             }
         }
     }

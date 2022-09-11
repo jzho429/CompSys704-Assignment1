@@ -1,6 +1,6 @@
 FillerController(
 		input signal bottleAtPos2, dosUnitEvac, dosUnitFilled;
-        input int signal fillAmmount1, fillAmmount2, fillAmmount3, fillAmmount4;
+        input int signal fillAmount1, fillAmount2, fillAmount3, fillAmount4;
 		output signal valveInjectorOnOff, valveInletOnOff, dosUnitValveRetract, dosUnitValveExtend;
         output signal doneAtPos2, stillWorking;
 		)
@@ -25,13 +25,17 @@ FillerController(
                             {sustain dosUnitValveExtend;}
                         }
 
-                        if((Integer)#filler == 1){System.out.println("Filler: 1, Fill Percent: " + (Integer)#fillAmmount1 + "%");}
-                        else if((Integer)#filler == 2){System.out.println("Filler: 2, Fill Percent: " + (Integer)#fillAmmount2 + "%");}
-                        else if((Integer)#filler == 3){System.out.println("Filler: 3, Fill Percent: " + (Integer)#fillAmmount3 + "%");}
-                        else if((Integer)#filler == 4){System.out.println("Filler: 4, Fill Percent: " + (Integer)#fillAmmount4 + "%");}
+                        if((Integer)#filler == 1){System.out.println("Filler: 1, Fill Percent: " + (Integer)#fillAmount1 + "%");}
+                        else if((Integer)#filler == 2){System.out.println("Filler: 2, Fill Percent: " + (Integer)#fillAmount2 + "%");}
+                        else if((Integer)#filler == 3){System.out.println("Filler: 3, Fill Percent: " + (Integer)#fillAmount3 + "%");}
+                        else if((Integer)#filler == 4){System.out.println("Filler: 4, Fill Percent: " + (Integer)#fillAmount4 + "%");}
 
                         emit filler((Integer)#filler + 1);
-                        if((Integer)#filler >= 4){exit(Z);}
+                        System.out.println((Integer)#filler);
+                        if((Integer)#filler >= 4){
+                            System.out.println("exiting");
+                            exit(Z);
+                        }
                         pause;
                     }
                 }
@@ -42,6 +46,7 @@ FillerController(
                 sustain stillWorking((Integer)#filler);
             }
         }
+        System.out.println("Done at pos 2");
         emit doneAtPos2;
         pause;
     }
