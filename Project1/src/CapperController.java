@@ -561,10 +561,9 @@ public class CapperController extends ClockDomain{
             
             case 4 : 
               if(gripperTurnHomePos.getprestatus()){//sysj\Capper\CapperController.sysj line: 32, column: 9
-                System.out.println("aborted lmao");//sysj\Capper\CapperController.sysj line: 42, column: 9
                 S2=5;
-                System.out.println("still clampin");//sysj\Capper\CapperController.sysj line: 44, column: 13
-                cylClampBottleExtend.setPresent();//sysj\Capper\CapperController.sysj line: 45, column: 4
+                System.out.println("still clampin");//sysj\Capper\CapperController.sysj line: 43, column: 13
+                cylClampBottleExtend.setPresent();//sysj\Capper\CapperController.sysj line: 44, column: 4
                 currsigs.addElement(cylClampBottleExtend);
                 active[1]=1;
                 ends[1]=1;
@@ -591,10 +590,9 @@ public class CapperController extends ClockDomain{
                 }
                 //FINXME code
                 if(biggest740 == 0){
-                  System.out.println("aborted lmao");//sysj\Capper\CapperController.sysj line: 42, column: 9
                   S2=5;
-                  System.out.println("still clampin");//sysj\Capper\CapperController.sysj line: 44, column: 13
-                  cylClampBottleExtend.setPresent();//sysj\Capper\CapperController.sysj line: 45, column: 4
+                  System.out.println("still clampin");//sysj\Capper\CapperController.sysj line: 43, column: 13
+                  cylClampBottleExtend.setPresent();//sysj\Capper\CapperController.sysj line: 44, column: 4
                   currsigs.addElement(cylClampBottleExtend);
                   active[1]=1;
                   ends[1]=1;
@@ -603,9 +601,9 @@ public class CapperController extends ClockDomain{
               }
             
             case 5 : 
-              if(gripperZAxisLifted.getprestatus()){//sysj\Capper\CapperController.sysj line: 43, column: 9
-                System.out.println("CapperController: doneAtPos4");//sysj\Capper\CapperController.sysj line: 47, column: 9
-                doneAtPos4.setPresent();//sysj\Capper\CapperController.sysj line: 48, column: 9
+              if(gripperZAxisLifted.getprestatus()){//sysj\Capper\CapperController.sysj line: 42, column: 9
+                System.out.println("CapperController: doneAtPos4");//sysj\Capper\CapperController.sysj line: 46, column: 9
+                doneAtPos4.setPresent();//sysj\Capper\CapperController.sysj line: 47, column: 9
                 currsigs.addElement(doneAtPos4);
                 S2=0;
                 active[1]=1;
@@ -613,7 +611,7 @@ public class CapperController extends ClockDomain{
                 break RUN;
               }
               else {
-                cylClampBottleExtend.setPresent();//sysj\Capper\CapperController.sysj line: 45, column: 4
+                cylClampBottleExtend.setPresent();//sysj\Capper\CapperController.sysj line: 44, column: 4
                 currsigs.addElement(cylClampBottleExtend);
                 active[1]=1;
                 ends[1]=1;

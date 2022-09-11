@@ -39,7 +39,6 @@ CapperController(
 			{System.out.println("untwistgrip");
             sustain gripperTurnRetract;}// Untwist the gripper
 		}
-        System.out.println("aborted lmao");
 		abort(gripperZAxisLifted){
             System.out.println("still clampin");
 			sustain cylClampBottleExtend; // Clamps the bottle

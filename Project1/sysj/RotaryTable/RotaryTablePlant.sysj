@@ -37,12 +37,8 @@ RotaryTablePlant(
 					System.out.println("RT5");
 					bottlePosition = 1;
 					emit RTPutBottleAt5;
+					pause;
 					await(!rotaryTableTrigger);
-					// abort(rotaryTableTrigger){
-					// 	{sustain RTPutBottleAt5;}
-					// 	||
-					// 	{sustain tableAlignedWithSensor;}
-					// }
 					System.out.println("RT5 left");
 				}
 			}

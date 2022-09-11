@@ -75,7 +75,7 @@ public class POSCanvas extends JPanel {
         add(quantity);
 
         try {
-            Image img = ImageIO.read(getClass().getResource("coolerButton.png")).getScaledInstance(230, 100,
+            Image img = ImageIO.read(getClass().getResource("orderButton.png")).getScaledInstance(230, 100,
                     BufferedImage.SCALE_SMOOTH);
             orderButton.setIcon(new ImageIcon(img));
         } catch (Exception ex) {

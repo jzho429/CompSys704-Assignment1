@@ -33,6 +33,7 @@ public class RotaryTablePlant extends ClockDomain{
   private int S721 = 1;
   private int S698 = 1;
   private int S703 = 1;
+  private int S717 = 1;
   private int S2521 = 1;
   
   private int[] ends = new int[10];
@@ -47,8 +48,8 @@ public class RotaryTablePlant extends ClockDomain{
         break;
       
       case 1 : 
-        if(rotaryTableTrigger.getprestatus()){//sysj\RotaryTable\RotaryTablePlant.sysj line: 54, column: 23
-          rotaryTableTriggerE.setPresent();//sysj\RotaryTable\RotaryTablePlant.sysj line: 54, column: 43
+        if(rotaryTableTrigger.getprestatus()){//sysj\RotaryTable\RotaryTablePlant.sysj line: 50, column: 23
+          rotaryTableTriggerE.setPresent();//sysj\RotaryTable\RotaryTablePlant.sysj line: 50, column: 43
           currsigs.addElement(rotaryTableTriggerE);
           active[9]=1;
           ends[9]=1;
@@ -313,6 +314,7 @@ public class RotaryTablePlant extends ClockDomain{
                           bottlePosition_thread_2 = 1;//sysj\RotaryTable\RotaryTablePlant.sysj line: 38, column: 6
                           RTPutBottleAt5.setPresent();//sysj\RotaryTable\RotaryTablePlant.sysj line: 39, column: 6
                           currsigs.addElement(RTPutBottleAt5);
+                          S717=0;
                           active[2]=1;
                           ends[2]=1;
                           tdone[2]=1;
@@ -437,17 +439,30 @@ public class RotaryTablePlant extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(!rotaryTableTrigger.getprestatus()){//sysj\RotaryTable\RotaryTablePlant.sysj line: 40, column: 12
-                              System.out.println("RT5 left");//sysj\RotaryTable\RotaryTablePlant.sysj line: 46, column: 6
-                              S956=1;
-                              active[2]=1;
-                              ends[2]=1;
-                              tdone[2]=1;
-                            }
-                            else {
-                              active[2]=1;
-                              ends[2]=1;
-                              tdone[2]=1;
+                            switch(S717){
+                              case 0 : 
+                                S717=0;
+                                S717=1;
+                                active[2]=1;
+                                ends[2]=1;
+                                tdone[2]=1;
+                                break;
+                              
+                              case 1 : 
+                                if(!rotaryTableTrigger.getprestatus()){//sysj\RotaryTable\RotaryTablePlant.sysj line: 41, column: 12
+                                  System.out.println("RT5 left");//sysj\RotaryTable\RotaryTablePlant.sysj line: 42, column: 6
+                                  S956=1;
+                                  active[2]=1;
+                                  ends[2]=1;
+                                  tdone[2]=1;
+                                }
+                                else {
+                                  active[2]=1;
+                                  ends[2]=1;
+                                  tdone[2]=1;
+                                }
+                                break;
+                              
                             }
                             break;
                           
@@ -490,8 +505,8 @@ public class RotaryTablePlant extends ClockDomain{
 
   public void thread2526(int [] tdone, int [] ends){
         S2521=1;
-    if(rotaryTableTrigger.getprestatus()){//sysj\RotaryTable\RotaryTablePlant.sysj line: 54, column: 23
-      rotaryTableTriggerE.setPresent();//sysj\RotaryTable\RotaryTablePlant.sysj line: 54, column: 43
+    if(rotaryTableTrigger.getprestatus()){//sysj\RotaryTable\RotaryTablePlant.sysj line: 50, column: 23
+      rotaryTableTriggerE.setPresent();//sysj\RotaryTable\RotaryTablePlant.sysj line: 50, column: 43
       currsigs.addElement(rotaryTableTriggerE);
       active[9]=1;
       ends[9]=1;
