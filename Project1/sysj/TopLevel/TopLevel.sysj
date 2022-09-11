@@ -1,5 +1,5 @@
 import run.GUI;
-RotaryTableController(
+TopLevel(
 		input int signal bottleCount, fillAmount1E, fillAmount2E, fillAmount3E, fillAmount4E;
         input signal bottleLeftPos5, start;
         output int signal fillAmount1, fillAmount2, fillAmount3, fillAmount4;

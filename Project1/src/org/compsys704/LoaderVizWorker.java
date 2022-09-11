@@ -27,6 +27,18 @@ public class LoaderVizWorker extends Worker {
 			case "fillerE":
 				States.fillerE = status;
 				break;
+			case "filler1E":
+				States.filler1E = status;
+				break;
+			case "filler2E":
+				States.filler2E = status;
+				break;
+			case "filler3E":
+				States.filler3E = status;
+				break;
+			case "filler4E":
+				States.filler4E = status;
+				break;
 			case "rotaryTableTriggerE":
 				States.rotaryTableTriggerE = status;
 				break;
@@ -37,7 +49,8 @@ public class LoaderVizWorker extends Worker {
 	}
 
 	static final List<String> signames = Arrays.asList("bottleAtPos1E", "bottleAtPos2E", "bottleAtPos3E",
-			"bottleAtPos4E", "bottleAtPos5E", "fillerE", "rotaryTableTriggerE");
+			"bottleAtPos4E", "bottleAtPos5E", "fillerE", "filler1E", "filler2E", "filler3E", "filler4E",
+			"rotaryTableTriggerE");
 
 	@Override
 	public boolean hasSignal(String sn) {

@@ -8,6 +8,10 @@ public class States {
 	public static volatile boolean bottleAtPos5E = false;
 	public static volatile boolean bottleLeftPos5E = false;
 	public static volatile boolean fillerE = false;
+	public static volatile boolean filler1E = false;
+	public static volatile boolean filler2E = false;
+	public static volatile boolean filler3E = false;
+	public static volatile boolean filler4E = false;
 	public static volatile boolean rotaryTableTriggerE = false;
 	public static volatile int fillerVal = 0;
 }

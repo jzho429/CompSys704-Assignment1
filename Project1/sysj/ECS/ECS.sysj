@@ -1,0 +1,79 @@
+ECS(
+		input int signal sec1Temp, sec2Temp, sec3Temp;
+		input signal sec1PIR, sec2PIR, sec3PIR;
+		input int signal sec1Light, sec2Light, sec3Light;
+		input signal sec1Smoke, sec2Smoke, sec3Smoke;
+		output int signal sec1AC, sec2AC, sec3AC;
+		output int signal sec1LightBulb, sec2LightBulb, sec3LightBulb;
+		output signal smokeAlarm;
+		)
+->{
+	{//Temperature
+		int roomTemp = 22;
+		int sec1, sec2, sec3
+		int signal temp;
+		{
+			while(true){
+			pause;
+			}
+		}
+		||
+		{
+			while(true){
+			pause;
+			}
+		}
+		||
+		{
+			while(true){
+			pause;
+			}
+		}
+		
+	}
+	||
+	{//Person detection
+		loop {
+			
+		pause;
+		}
+	}
+	||
+	{//Light detection
+		loop {
+			
+		pause;
+		}
+	}
+	||
+	{
+		{while(true){present(sec1Smoke){emit smokeAlarm;} pause;}}
+		||
+		{while(true){present(sec2Smoke){emit smokeAlarm;} pause;}}
+		||
+		{while(true){present(sec3Smoke){emit smokeAlarm;} pause;}}
+	}
+}
+
+
+/*
+Grouping Zones
+	Section 1 (Office) 1, 7
+	Section 2 (Storage) 2, 3, 4
+	Section 3 (Manufacturing) 5, 6
+
+Need to control, Lights, Temperature, Humidity
+take in account time, and human presence
+
+Inputs:
+Temperature Sensor
+Humidity
+Light intensity
+Human presence
+Smoke alarm
+
+Output:
+Lightbulb
+AC device
+
+*/

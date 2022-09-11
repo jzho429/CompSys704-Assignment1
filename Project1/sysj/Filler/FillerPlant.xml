@@ -12,7 +12,11 @@
 			<oSignal Name="dosUnitEvac" 	To="FillerControllerCD.dosUnitEvac" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32000" />
 			<oSignal Name="dosUnitFilled" 	To="FillerControllerCD.dosUnitFilled" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32000" />
 
-			<oSignal Name="fillerE" 	To="UI." 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="fillerE" 	To="UI.fillerE" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="filler1E" 	To="UI.filler1E" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="filler2E" 	To="UI.filler2E" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="filler3E" 	To="UI.filler3E" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="filler4E" 	To="UI.filler4E" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
 		</ClockDomain>
 	</SubSystem>
 </System>

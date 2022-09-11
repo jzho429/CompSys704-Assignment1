@@ -1,0 +1,10 @@
+SACS(
+    input signal 
+    output signal 
+)
+->{
+
+}
+
+// Inputs: Access card info, Carry on badge
+// Outputs: Access to location, Location from badge, Susped bottling

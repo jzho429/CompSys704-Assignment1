@@ -24,12 +24,12 @@
 			<oSignal Name="bottleAtPos4RT"  To="RotaryTableControllerCD.bottleAtPos4RT" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
 			<oSignal Name="bottleAtPos5RT"  To="RotaryTableControllerCD.bottleAtPos5RT" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
 			
-			<oSignal Name="bottleAtPos1E"   To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="bottleAtPos2E"   To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="bottleAtPos3E"   To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="bottleAtPos4E"   To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="bottleAtPos5E"   To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="bottleLeftPos5E" To="VIZCD" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="bottleAtPos1E"   To="UI.bottleAtPos1E" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="bottleAtPos2E"   To="UI.bottleAtPos2E" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="bottleAtPos3E"   To="UI.bottleAtPos3E" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="bottleAtPos4E"   To="UI.bottleAtPos4E" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="bottleAtPos5E"   To="UI.bottleAtPos5E" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="bottleLeftPos5E" To="UI.bottleLeftPos5E" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
 		</ClockDomain>
 	</SubSystem>
 </System>

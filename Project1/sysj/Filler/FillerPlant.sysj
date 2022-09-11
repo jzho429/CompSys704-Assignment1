@@ -2,7 +2,7 @@ FillerPlant(
         input signal valveInjectorOnOff, valveInletOnOff, dosUnitValveRetract, dosUnitValveExtend;
         input int signal stillWorking;
 		output signal dosUnitEvac, dosUnitFilled;
-        output signal fillerE;
+        output signal fillerE, filler1E, filler2E, filler3E, filler4E;
 		)
 ->{
     {
@@ -51,8 +51,27 @@ FillerPlant(
         }
     }
     ||
-    {while(true){present(stillWorking){emit fillerE(#stillWorking);} pause;}}
-
+    {
+        while(true){present(stillWorking){emit fillerE;} pause;}
+    }
+    ||
+    {
+        while(true){
+            present(stillWorking){
+                if(#stillWorking == 1){
+                    emit filler1E;
+                }else if (#stillWorking == 2){
+                    emit filler2E;
+                }else if (#stillWorking == 3){
+                    emit filler3E;
+                }else if (#stillWorking == 4){
+                    emit filler4E;
+                }
+            }
+            pause;
+        }
+    }
+}
 /*Filler clock-domain (for a single liquid filler)
 • Input signal(s)
     o bottleAtPos2 – Present when the bottle is at position 2

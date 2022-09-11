@@ -1,14 +1,14 @@
 <System xmlns="http://systemjtechnology.com">
-	<SubSystem Name="TopLevel" Local="true">
+	<SubSystem Name="SSTopLevel" Local="true">
 		<ClockDomain Name="TopLevelCD" Class="TopLevel">
-			<iSignal Name="bottleCount"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
+			<!-- <iSignal Name="bottleCount"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
             <iSignal Name="fillAmount1E"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
 			<iSignal Name="fillAmount2E"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
 			<iSignal Name="fillAmount3E"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
 			<iSignal Name="fillAmount4E"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
             <iSignal Name="start"           Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
 
-            <iSignal Name="bottleLeftPos5"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
+            <iSignal Name="bottleLeftPos5"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" /> -->
 			
             <oSignal Name="fillAmount1"     To="FillerControllerCD.fillAmount1"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32000" />
 			<oSignal Name="fillAmount2"     To="FillerControllerCD.fillAmount2"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="32000" />

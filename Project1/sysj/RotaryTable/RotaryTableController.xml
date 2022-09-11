@@ -9,9 +9,9 @@
 			<iSignal Name="bottleAtPos4RT"    		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
 			<iSignal Name="bottleAtPos5RT"    		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
 
-			<!-- <iSignal Name="doneAtPos2"    			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
+			<iSignal Name="doneAtPos2"    			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
 			<iSignal Name="doneAtPos3"    			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
-			<iSignal Name="doneAtPos4"    			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" /> -->
+			<iSignal Name="doneAtPos4"    			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="31000" />
 
             <oSignal Name="rotaryTableTrigger"		To="RotaryTablePlantCD.rotaryTableTrigger" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31001" />
 			<oSignal Name="rotaryTableTriggerCV"    To="ConveyorPlantCD.rotaryTableTrigger" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30001" />

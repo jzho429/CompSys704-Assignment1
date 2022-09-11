@@ -9,7 +9,7 @@
 			<oSignal Name="RTPutBottleAt4"    		To="ConveyorPlantCD.RTPutBottleAt4" 				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30001" />
 			<oSignal Name="RTPutBottleAt5"    		To="ConveyorPlantCD.RTPutBottleAt5" 				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30001" />
 			<oSignal Name="capOnBottleAtPos1"    	To="RotaryTableControllerCD.capOnBottleAtPos1" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="31000" />
-			<oSignal Name="rotaryTableTriggerE"    	To="VIZCD" 											Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="rotaryTableTriggerE"    	To="UI.rotaryTableTriggerE" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
 		</ClockDomain>
 	</SubSystem>
 </System>

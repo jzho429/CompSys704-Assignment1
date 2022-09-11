@@ -39,8 +39,10 @@ ConveyorPlant(
 	{
 		{
 			while(true){
-				//await(bottleAtPos0 && motorOn);
-				await(motorOn);
+				System.out.println("ConveyorPlant: Waiting for bottle at pos 0");
+				await(bottleAtPos0 && motorOn);
+				System.out.println("ConveyorPlant: Bottle at pos 0");
+				//await(motorOn);
 				abort(rotaryTableTrigger){
 					System.out.println("Bottle at pos 1");
 					sustain bottleAtPos1;
@@ -51,7 +53,6 @@ ConveyorPlant(
 		||
 		{
 			while(true) {
-				System.out.println("tester2");
 				present(RTPutBottleAt2){
 					System.out.println("Bottle at pre pos 2");
 					abort(bottleAtPos3){
